@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<style>
+    #add-note-btn {
+        position: fixed; /* Position the button fixed within the viewport */
+        bottom: 20px; /* Set distance from the bottom */
+        right: 20px; /* Set distance from the right */
+        height: 100px;
+        width: 300px;
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+        z-index: 1000; /* Ensure it's above other content */
+    }
+    
+    #add-note-section {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        z-index: 1001; /* Ensure it's above the overlay */
+    }
+    #notes-container {
+        display: flex;
+        flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+    }
+    
+    .cell {
+        flex: 0 0 auto; /* Allow cells to grow and shrink, but not grow beyond their content */
+        width: 200px; /* Set a fixed width for each cell */
+        margin-right: 20px; /* Add margin between cells */
+        margin-bottom: 20px; /* Add margin below cells */
+        background-color: #f9f9f9; /* Background color for cells */
+        padding: 10px; /* Add padding */
+        border: 1px solid #ccc; /* Add border */
+        border-radius: 5px; /* Add border radius */
+    }
+    
+</style>
+
+<div id="add-note-overlay" class="overlay" style="display: none;"></div>
+
+<div class="grid-container" id="notes-container">
+    {% for opportunity in opportunities %}
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ opportunity.activity }}</h5>
+                <div class="card-text faculty-info">
+                    <span class="font-weight-light">Факультет</span>
+                    <span class="font-weight-normal">:</span> Усі
+                </div>
+                <div class="card-text date-info">
+                    <span class="font-weight-normal">Дата:</span> {{ opportunity.date }}
+                </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Детальніше про можливість
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">{{ opportunity.activity }}</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ opportunity.description }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Зареєструватись</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+    
+<script>
+    document.getElementById('add-note-btn').addEventListener('click', function() {
+        document.getElementById('add-note-section').style.display = 'block';
+        document.getElementById('add-note-overlay').style.display = 'block';
+    });
+
+    document.getElementById('add-note-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle form submission using JavaScript or submit via AJAX
+        // For simplicity, I'll just submit the form normally here
+        this.submit();
+    });
+
+    function updateCardLayout() {
+        var containerWidth = document.getElementById('notes-container').offsetWidth;
+        var cardWidth = 18 * 16; // Assuming 1rem = 16px
+        var cardsPerRow = Math.floor(containerWidth / cardWidth);
+
+        var cols = document.querySelectorAll('#notes-container .col');
+        cols.forEach(function (col) {
+            col.classList.remove('col-4', 'col-sm-6', 'col-md-4', 'col-lg-3');
+            col.classList.add('col-' + Math.floor(12 / cardsPerRow));
+        });
+    }
+
+    // Update card layout when the window is resized
+    window.addEventListener('resize', updateCardLayout);
+
+    // Initial call to set the card layout
+    updateCardLayout();
+    
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}

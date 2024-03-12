@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/personal.css') }}">
+        <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/registration.css') }}">
+
+        <title>{% block title %}Home{% endblock %}</title>
+    </head>
+
+    <body>
+        <nav class="menu">
+            <div class="container-fluid">
+              <a class="logo" href="/home">
+                Можливості
+              </a>
+            </div>
+            {% if not admin%}
+              {% if user.is_authenticated %}
+              <div class = 'nav_button'>
+                <a href = "personal_cab.html" class="acount">
+                  <div class="circle"></div>
+                </a>
+                <a class="nav-item nav-link bar" id="logout" href="/logout">Logout</a>
+              </div>
+              {% else %}
+              <div class = 'nav_button'>
+                <a class="nav-item nav-link bar" id="login" href="/login">Login</a>
+                <a class="nav-item nav-link bar" id="sign-up" href="/sign-up">Sign-up</a>
+              </div>
+              {% endif %}
+            {%else%}
+              <a class="nav-item nav-link bar" href="/logout">Logout</a>
+              <a class="nav-item nav-link bar" href="/secret_admin/add_opportunity">Add Opportunity</a>
+            {% endif%}
+        </nav>
+
+        {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error'%}
+            <div class="alert alert-danger alter-dismissable fade show" role="alert"> 
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert"> 
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% else %}
+            <div class="alert alert-success alter-dismissable fade show" role="alert"> 
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert"> 
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="container">
+            {% block content %} {% endblock %} 
+        </div>
+        
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"
+        ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+      ></script>
+    <script 
+        type="text/javascript"
+        src="{{ url_for('static', filename='index.js')}}">
+    </script>
+    </body>
+</html>

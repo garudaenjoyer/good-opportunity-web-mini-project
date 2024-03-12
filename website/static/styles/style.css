@@ -1,0 +1,98 @@
+.menu{
+    background-color:#A63D3D;
+    padding: 20px;
+    display:flex;
+    justify-content:space-between;
+    margin-bottom: 30px;
+}
+
+.bar{
+    color: #fff;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+}
+.logo{
+    /* background-color: green; */
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+}
+.logo:hover{
+    color: rgb(224, 224, 224);
+}
+
+.nav_button{
+    display:flex;
+    justify-content: space-between;
+    width: 200px;
+    display: flex;
+    align-items: center;
+}
+.circle{
+    width: 50px;
+    height: 50px;
+    background-color: rgb(213, 213, 213);
+    border-radius: 50px;
+}
+.log-out{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+@media (max-width: 520px){
+    .circle{
+        display: none;
+    }
+    .logo{
+        font-size: 25px;
+    }
+    .log-out{
+        font-size: 15px;
+    }
+}
+
+.btn-primary{
+    margin-top: 10px;
+    background-color: #A63D3D;
+    border: #A63D3D 2px solid;
+    transition: 400ms;
+    display: flex;
+    justify-content: center;
+}
+.btn-primary:hover{
+    color: #A63D3D;
+    background-color: #473f3f00;
+    border-width: 100px;
+    border: #A63D3D 2px solid;
+}
+.btn-primary:active{
+    color: #A63D3D;
+    background-color: #473f3f00;
+    border-width: 100px;
+    border: #A63D3D 2px solid;
+}
+
+.row{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.grid-container .cell {
+    margin-bottom: 30px;
+    width: 500px;
+}
+
+
+
+.card{
+    margin: 20px;
+}
+
