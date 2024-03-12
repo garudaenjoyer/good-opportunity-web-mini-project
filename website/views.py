@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, url_for, redirect, request
+from sqlalchemy import desc
+from flask import Blueprint, render_template, url_for, redirect, flash, request, jsonify
 from flask_login import login_required, current_user, login_user
 from .models import Opportunity
-from sqlalchemy import desc
+from .models import db
+import json
 
 views = Blueprint('views', __name__)
 
@@ -22,3 +24,15 @@ def home():
         opportunities = Opportunity.query.all()
 
     return render_template('home.html', user=current_user, admin=False, opportunities= opportunities)
+
+@views.route('/delete_opportunity', methods= ['POST'])
+def delete_oppor():
+    data = json.loads(request.data)
+    opporId = data['opporId']
+    oppor = Opportunity.query.get(opporId)
+    if oppor:
+        db.session.delete(oppor)
+        db.session.commit()
+        flash('Opportunity was deleted', 'success')
+    return jsonify({})
+
