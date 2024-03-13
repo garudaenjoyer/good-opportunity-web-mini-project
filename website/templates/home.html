@@ -53,6 +53,9 @@
 <div id="add-note-overlay" class="overlay" style="display: none;"></div>
 
 <div class="grid-container" id="notes-container">
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('opportunity_maker.generate_dummy_opportunities') }}">Generate Dummy Opportunities</a>
+    {% endif %}
     {% for opportunity in opportunities %}
         {% if admin %}
         <!-- Кнопка видалення -->
@@ -76,24 +79,42 @@
                 </button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">{{ opportunity.activity }}</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ opportunity.activity }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card-text location-info">
+                                    <span class="font-weight-normal">Місце проведення:</span> {{ opportunity.location }}
+                                </div>
+                                <div class="card-text time-info">
+                                    <span class="font-weight-normal">Час:</span> {{ opportunity.time }}
+                                </div>
+                                <div class="card-text email-info">
+                                    <span class="font-weight-normal">Електронна пошта:</span> {{ opportunity.email }}
+                                </div>
+                                <div class="card-text phone-info">
+                                    <span class="font-weight-normal">Телефон:</span> {{ opportunity.phone }}
+                                </div>
+                                <div class="card-text hours-info">
+                                    <span class="font-weight-normal">Кількість годин:</span> {{ opportunity.hours }}
+                                </div>
+                                <div class="card-text description-info">
+                                    <span class="font-weight-normal">Опис:</span> {{ opportunity.description }}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Зареєструватись</button>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            {{ opportunity.description }}
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Зареєструватись</button>
-                        </div>
-                      </div>
                     </div>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
+    
     {% endfor %}
 </div>
 

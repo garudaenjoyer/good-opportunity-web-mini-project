@@ -29,6 +29,53 @@ and email and phone and hours:
                 return redirect(url_for('admin_view.admin'))
             flash('Please fill all forms', 'error')
             return redirect(url_for('admin_view.admin'))
-        return render_template('add_opportunity.html', add_opportunity= True)
+        return render_template('add_opportunity.html', add_opportunity=True, user=current_user)
     else:
         abort(404)
+
+@opportunity_maker.route('/generate_dummy_opportunities', methods=['GET'])
+@login_required
+def generate_dummy_opportunities():
+    # Dummy data
+    dummy_opportunities = [
+        {
+            'date': '2024-03-15',
+            'activity': 'Dummy Activity 1',
+            'description': 'Dummy Description 1',
+            'location': 'Dummy Location 1',
+            'time': '12:00 PM',
+            'email': 'dummy1@example.com',
+            'phone': '1234567890',
+            'hours': '5'
+        },
+        {
+            'date': '2024-03-16',
+            'activity': 'Dummy Activity 2',
+            'description': 'Dummy Description 2',
+            'location': 'Dummy Location 2',
+            'time': '1:00 PM',
+            'email': 'dummy2@example.com',
+            'phone': '9876543210',
+            'hours': '8'
+        }
+        # Add more dummy opportunities as needed
+    ]
+
+    # Add dummy opportunities to the database
+    for data in dummy_opportunities:
+        opportunity = Opportunity(
+            date=data['date'],
+            activity=data['activity'],
+            description=data['description'],
+            location=data['location'],
+            time=data['time'],
+            email=data['email'],
+            phone=data['phone'],
+            hours=data['hours']
+        )
+        db.session.add(opportunity)
+    
+    db.session.commit()
+    flash('Dummy opportunities created successfully', 'success')
+    return redirect(url_for('views.home'))
+    
