@@ -2,14 +2,17 @@ from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
+user_opportunity = db.Table('user_opportunity',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('opportunity_id', db.Integer, db.ForeignKey('opportunity.id'), primary_key=True)
+)
 
-#database, row: new user, column: user_info
 class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key= True)
-    email = db.Column(db.String(150), unique= True)
-    username = db.Column(db.String(150), unique= True)
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(150), unique=True)
+    username = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
-    data_created = db.Column(db.DateTime(timezone= True), default= func.now())
+    data_created = db.Column(db.DateTime(timezone=True), default=func.now())
 
 class Opportunity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
