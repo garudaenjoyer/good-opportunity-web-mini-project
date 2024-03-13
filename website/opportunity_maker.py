@@ -36,32 +36,60 @@ and email and phone and hours:
 @opportunity_maker.route('/generate_dummy_opportunities', methods=['GET'])
 @login_required
 def generate_dummy_opportunities():
-    # Dummy data
     dummy_opportunities = [
         {
-            'date': '2024-03-15',
-            'activity': 'Dummy Activity 1',
-            'description': 'Dummy Description 1',
-            'location': 'Dummy Location 1',
-            'time': '12:00 PM',
-            'email': 'dummy1@example.com',
-            'phone': '1234567890',
-            'hours': '5'
-        },
-        {
-            'date': '2024-03-16',
-            'activity': 'Dummy Activity 2',
-            'description': 'Dummy Description 2',
-            'location': 'Dummy Location 2',
-            'time': '1:00 PM',
-            'email': 'dummy2@example.com',
-            'phone': '9876543210',
-            'hours': '8'
-        }
-        # Add more dummy opportunities as needed
+    'date': '2024-03-16',
+    'activity': 'Community Cleanup Day',
+    'description': 'Join us for a community cleanup event to beautify our neighborhood and promote environmental stewardship. Volunteers will receive a free lunch and a certificate of appreciation.',
+    'location': 'Central Park',
+    'time': '9:00 AM - 12:00 PM',
+    'email': 'volunteer@communitycleanup.org',
+    'phone': '555-123-4567',
+    'hours': '4'
+},
+{
+    'date': '2024-03-20',
+    'activity': 'Children\'s Book Reading',
+    'description': 'Share the joy of reading with children at the local library. Volunteers will read stories to kids and help them discover the magic of books.',
+    'location': 'City Library',
+    'time': '10:00 AM - 11:30 AM',
+    'email': 'reading@library.org',
+    'phone': '555-987-6543',
+    'hours': '2'
+},
+{
+    'date': '2024-03-25',
+    'activity': 'Food Drive',
+    'description': 'Collect non-perishable food items for families in need. Help make a difference in the community by contributing to this important cause.',
+    'location': 'Community Center',
+    'time': '2:00 PM - 4:00 PM',
+    'email': 'fooddrive@communitycenter.org',
+    'phone': '555-789-0123',
+    'hours': '3'
+},
+{
+    'date': '2024-03-30',
+    'activity': 'Senior Center Visit',
+    'description': 'Spend time with seniors at the local senior center. Engage in conversations, play games, and bring smiles to their faces.',
+    'location': 'Senior Center',
+    'time': '1:30 PM - 3:30 PM',
+    'email': 'seniors@seniorcenter.org',
+    'phone': '555-321-6548',
+    'hours': '2'
+},
+{
+    'date': '2024-04-05',
+    'activity': 'Park Cleanup',
+    'description': 'Help clean up litter and maintain the beauty of our local park. Gloves and trash bags will be provided. All ages welcome!',
+    'location': 'City Park',
+    'time': '9:00 AM - 11:00 AM',
+    'email': 'parkcleanup@citypark.org',
+    'phone': '555-456-7890',
+    'hours': '2'
+}
+
     ]
 
-    # Add dummy opportunities to the database
     for data in dummy_opportunities:
         opportunity = Opportunity(
             date=data['date'],

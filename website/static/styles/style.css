@@ -96,3 +96,17 @@
     margin: 20px;
 }
 
+.hello{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+.close{
+    background-color: #fff;
+    color: #A63D3D;
+}
+.close:hover{
+    background-color: #A63D3D;
+    color: #fff;
+    font-weight: 400;
+}
