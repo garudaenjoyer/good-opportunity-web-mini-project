@@ -55,7 +55,7 @@
 <div class="grid-container" id="notes-container">
     {% for opportunity in opportunities %}
         {% if admin %}
-        <!-- Кнопка видалення -->
+            <!-- Кнопка видалення -->
             <button type="button" class="close" onClick="deleteActivity({{ opportunity.id }})">
                 <span aria-hidden="true">&times;</span>
             </button>
