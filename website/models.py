@@ -12,10 +12,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     username = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
-    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
-    scholarship_hours_worked = db.Column(db.Integer, default=0)
-    program = db.Column(db.String(15))
-    opportunities = db.relationship('Opportunity', secondary=user_opportunity, backref=db.backref('applicants', lazy='dynamic'))
+    data_created = db.Column(db.DateTime(timezone=True), default=func.now())
 
 class Opportunity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
