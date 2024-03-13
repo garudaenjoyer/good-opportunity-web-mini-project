@@ -10,6 +10,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(150), unique= True)
     password = db.Column(db.String(150))
     data_created = db.Column(db.DateTime(timezone= True), default= func.now())
+    faculty = db.Column(db.String(150))
+    total_hours = db.Column(db.Integer)
+    done_hours = db.Column(db.Integer)
 
 class Opportunity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -21,3 +24,4 @@ class Opportunity(db.Model):
     email = db.Column(db.String(100))
     phone = db.Column(db.String(20))
     hours = db.Column(db.String(10))
+    

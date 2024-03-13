@@ -36,6 +36,9 @@ def sign_up():
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
 
+        faculty = request.form.get("faculty")
+        total_hours = int(request.form.get("total_time"))
+        done_hours = 0#                         <--- can add start amount later
         email_exists = User.query.filter_by(email=email).first()
         username_exists = User.query.filter_by(username=username).first()
 
@@ -49,9 +52,16 @@ def sign_up():
             flash('Username is too short', category='error')
         elif len(password1) < 6:
             flash('Password is too short', category='error')
+        elif total_hours > 60:
+            flash(f'{total_hours} is to many', category='error')
         else:
             #else create user
-            new_user = User(email= email, username= username, password = generate_password_hash(password1, method='scrypt'))
+            new_user = User(email= email, 
+                            username= username, 
+                            password = generate_password_hash(password1, method='scrypt'), 
+                            faculty = faculty,
+                            total_hours = total_hours,
+                            done_hours = done_hours)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
