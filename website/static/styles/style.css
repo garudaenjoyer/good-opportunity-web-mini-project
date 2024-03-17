@@ -29,6 +29,7 @@ a:hover{
     width:auto;
     display: flex;
     align-items: center;
+    white-space: nowrap;
 }
 .circle{
     width: 50px;
