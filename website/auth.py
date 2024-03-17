@@ -3,6 +3,7 @@ from . import db
 from .models import User
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+import re
 # render-templare: able to register html templates
 #redirect, url-for: for example in logout: redirects to views.home
 auth = Blueprint('auth', __name__)
@@ -44,6 +45,8 @@ def sign_up():
 
         if email_exists:
             flash('Email already exists', category='error')
+        elif bool(re.match('^[a-zA-Z0-9._%+-]+@ucu\.edu\.ua$', email)) is False:
+            flash('Username shoud use "ucu.edu.ua" domain', category='error')
         elif username_exists:
             flash('Username already exists', category='error')
         elif password1 != password2:
@@ -54,8 +57,10 @@ def sign_up():
             flash('Password is too short', category='error')
         elif total_hours > 60:
             flash(f'{total_hours} is to many', category='error')
+        elif bool(re.match('^[А-Я]{3}/\d{2}[А-Я]$', faculty)) is False:
+            flash('There is no such faculty')
         else:
-            #else create user
+
             new_user = User(email= email, 
                             username= username, 
                             password = generate_password_hash(password1, method='scrypt'), 
