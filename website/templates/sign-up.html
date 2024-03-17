@@ -1,66 +1,68 @@
 {% extends "base.html" %}   
 {% block title %}Sign-up{% endblock %}
 {% block content %}
-<div class="center">
-    <div class="form-container">
-        <form method="POST">
-            <h3 align="center"> 
-                Sign-up
-            </h3>
-            <div class="form-group">
-                <label for='email'>Email Address</label>
-                <input type="text" 
-                    id="email" 
-                    name="email" 
-                    class="form-control" 
-                    placeholder="Enter Email"
-                    value="{{ form_data.get('email', '') }}">
-                <label for='username'>Name Surname</label>
-                <input type="text" 
-                    id="username" 
-                    name="username" 
-                    class="form-control" 
-                    placeholder="Enter username"
-                    value="{{ form_data.get('username', '') }}">
-                <label for='faculty'>Faculty</label>
-                <input type="text" 
-                    id="faculty" 
-                    name="faculty" 
-                    class="form-control" 
-                    placeholder="Enter your faculty e.g. ПКН23/Б"
-                    value="{{ form_data.get('faculty', '') }}">
-                <label for='total_time'>Total hours</label>
-                <input type="number" 
-                    id="total_time" 
-                    name="total_time" 
-                    class="form-control" 
-                    placeholder="Enter total amount of hours to be done"
-                    value="{{ form_data.get('total_time', '') }}">
-                <label for='done_hours'>Done hours</label>
-                <input type="number" 
-                    id="done_hours" 
-                    name="done_hours" 
-                    class="form-control" 
-                    placeholder="Enter amount of completed hours"
-                    value="{{ form_data.get('done_hours', '') }}">
-                <label for='password1'>Password</label>
-                <input type="password" 
-                    id="password1" 
-                    name="password1" 
-                    class="form-control" 
-                    placeholder="Enter Password">
-                <label for='password2'>Password Again</label>
-                <input type="password" 
-                    id="password2" 
-                    name="password2" 
-                    class="form-control" 
-                    placeholder="Enter password again">
-                <br>
-                <div align="center">
-                    <button class="btn btn-primary" type="submit">Sign-up
-                </div>
-            </div>
-        </form>
+<!-- form: user_input -->
+<form method="POST"> <!-- form: posts data -->
+    <h3 align="center"> 
+        Sign-up
+    </h3>
+    <div class="form-group">
+        <!-- Defines a label for an <input> element-->
+        <label for='email'>Email Address</label>
+        <input type="text" 
+        id="email" 
+        name="email" 
+        class="form-control" 
+        placeholder="Enter Email"
+        >
+        <label for='username'>Name Surname</label>
+        <input type="text" 
+        id="username" 
+        name="username" 
+        class="form-control" 
+        placeholder="Enter username"
+        >
+        <label for='program'>Program</label>
+        <input type="text" 
+        id="facultprogram" 
+        name="facultprogram" 
+        class="form-control" 
+        placeholder="Enter your program e.g. ПКН/23"
+        >
+        <label for='total_time'>Total hours</label>
+        <input type="number" 
+        id="total_time" 
+        name="total_time" 
+        class="form-control" 
+        placeholder="Enter total amount of hours to be done"
+        >
+        <label for='done_hours'>Done hours</label>
+        <input type="number" 
+        id="done_hours" 
+        name="done_hours" 
+        class="form-control" 
+        placeholder="Enter amount of completed hours"
+        >
+        <label for='password1'>Password</label>
+        <input type="password" 
+        id="password1" 
+        name="password1" 
+        class="form-control" 
+        placeholder="Enter Password"
+        >
+        <label for='password2'>Password Again</label>
+        <input type="password" 
+        id="password2" 
+        name="password2" 
+        class="form-control" 
+        placeholder="Enter password again"
+        >
+    <br>
+    <div align="center">
+        <button class="btn btn-primary" type="submit">Sign-up
+    </div>
+
+    </button>
     </div>
 </div>
 {% endblock %}

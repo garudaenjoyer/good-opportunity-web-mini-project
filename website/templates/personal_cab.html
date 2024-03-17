@@ -24,8 +24,8 @@
         <h2>Використані можливості:</h2>
 
         <ul>
-            {% for event in user.events %}
-                <li>{{ event.name }} - {{ event.date }}</li>
+            {% for event in user.opportunities %}
+                <li>{{ event.activity }} - {{ event.date }}</li>
             {% endfor %}
         </ul>
 
