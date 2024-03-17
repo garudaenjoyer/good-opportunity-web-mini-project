@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     data_created = db.Column(db.DateTime(timezone= True), default= func.now())
+    program = db.Column(db.String(150))
     faculty = db.Column(db.String(150))
     total_hours = db.Column(db.Integer)
     done_hours = db.Column(db.Integer)

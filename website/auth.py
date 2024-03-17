@@ -5,6 +5,37 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 # render-templare: able to register html templates
 #redirect, url-for: for example in logout: redirects to views.home
+
+DICT_FACUL = {"ПКН": "Факультет прикладних наук", 
+              "ПСА": "Факультет прикладних наук", 
+              "ГКУ": "Гуманітарний факультет", 
+              "ГФІ": "Гуманітарний факультет", 
+              "ГІС": "Гуманітарний факультет", 
+              "ЗПС": "Факультет наук про здоров'я", 
+              "ЗСР": "Факультет наук про здоров'я",
+              "ЗПК": "Факультет наук про здоров'я",
+              "ЗПП": "Факультет наук про здоров'я",
+              "ЗЕР": "Факультет наук про здоров'я",
+              "ЗФТ": "Факультет наук про здоров'я",
+              "СЕП": "Факультет суспільних наук ",
+              "СПР": "Факультет суспільних наук ",
+              "ССО": "Факультет суспільних наук ",
+              "СЖУ": "Факультет суспільних наук ",
+              "СМЕ": "Факультет суспільних наук ",
+              "СУН": "Факультет суспільних наук ",
+              "СПА": "Факультет суспільних наук ",
+              "СБА": "Факультет суспільних наук (ЛБШ)",
+              "СІП": "Факультет суспільних наук (ЛБШ)",
+              "СУМ": "Факультет суспільних наук (ЛБШ)",
+              "СУП": "Факультет суспільних наук (ЛБШ)",
+              "СУТ": "Факультет суспільних наук (ЛБШ)",
+              "ФБА": "Філософсько-богословський факультет",
+              "ФБА": "Філософсько-богословський факультет",
+              "ФБС": "Філософсько-богословський факультет",
+              "ФБК": "Філософсько-богословський факультет",
+              }
+
+
 auth = Blueprint('auth', __name__)
 
 
@@ -36,7 +67,7 @@ def sign_up():
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
 
-        faculty = request.form.get("faculty")
+        program = request.form.get("program")
         total_hours = int(request.form.get("total_time"))
         done_hours = int(request.form.get("done_hours"))
         email_exists = User.query.filter_by(email=email).first()
@@ -59,7 +90,8 @@ def sign_up():
             new_user = User(email= email, 
                             username= username, 
                             password = generate_password_hash(password1, method='scrypt'), 
-                            faculty = faculty,
+                            program = program,
+                            faculty =  DICT_FACUL[program[:3]],
                             total_hours = total_hours,
                             done_hours = done_hours)
             db.session.add(new_user)
