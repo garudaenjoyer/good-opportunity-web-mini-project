@@ -38,7 +38,7 @@ def sign_up():
 
         faculty = request.form.get("faculty")
         total_hours = int(request.form.get("total_time"))
-        done_hours = 0#                         <--- can add start amount later
+        done_hours = int(request.form.get("done_hours"))
         email_exists = User.query.filter_by(email=email).first()
         username_exists = User.query.filter_by(username=username).first()
 

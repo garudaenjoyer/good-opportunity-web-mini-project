@@ -1,7 +1,5 @@
-{% extends "base.html" %}
-{% block title %}Home{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
 
 <style>
     #add-note-btn {
@@ -20,7 +18,7 @@
         background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
         z-index: 1000; /* Ensure it's above other content */
     }
-    
+
     #add-note-section {
         position: fixed;
         top: 50%;
@@ -36,7 +34,7 @@
         display: flex;
         flex-wrap: wrap; /* Allow flex items to wrap to the next line */
     }
-    
+
     .cell {
         flex: 0 0 auto; /* Allow cells to grow and shrink, but not grow beyond their content */
         width: 200px; /* Set a fixed width for each cell */
@@ -47,26 +45,44 @@
         border: 1px solid #ccc; /* Add border */
         border-radius: 5px; /* Add border radius */
     }
-    
 </style>
 
-<div id="add-note-overlay" class="overlay" style="display: none;"></div>
+<div id="add-note-overlay" class="overlay" style="display: none"></div>
 
 <div class="filters">
-    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expended = "false">
+    <a
+        href="#"
+        class="nav-link dropdown-toggle"
+        id="navbarDropdown"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expended="false"
+    >
         Сортувати за
-      </a>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
         <li>
-          <a href="{{ url_for('views.home', filter_key='new')}}" class="dropdown-item">Датою(найновіші)</a>
+            <a
+                href="{{ url_for('views.home', filter_key='new')}}"
+                class="dropdown-item"
+                >Датою(найновіші)</a
+            >
         </li>
         <li>
-          <a href="{{ url_for('views.home', filter_key='old')}}" class="dropdown-item">Датою(найстаріші)</a>
+            <a
+                href="{{ url_for('views.home', filter_key='old')}}"
+                class="dropdown-item"
+                >Датою(найстаріші)</a
+            >
         </li>
         <li>
-          <a href="{{ url_for('views.home', filter_key='amount')}}" class="dropdown-item">Кількістю годин</a>
+            <a
+                href="{{ url_for('views.home', filter_key='amount')}}"
+                class="dropdown-item"
+                >Кількістю годин</a
+            >
         </li>
-      </ul>
+    </ul>
 </div>
 <div class="grid-container" id="notes-container">
     <!-- {% if current_user.is_authenticated %}
@@ -80,52 +96,103 @@
                     <h5 class="card-title">{{ opportunity.activity }}</h5>
                     {% if admin %}
                     <!-- Кнопка видалення -->
-                        <button type="button" class="btn btn-primary close" onClick="confirmDelete({{ opportunity.id }})">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <button
+                        type="button"
+                        class="btn btn-primary close"
+                        onClick="confirmDelete({{ opportunity.id }})"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     {%endif%}
                 </div>
-                    
+
                 <div class="card-text faculty-info">
                     <span class="font-weight-light">Факультет</span>
                     <span class="font-weight-normal">:</span> Усі
                 </div>
                 <div class="card-text date-info">
-                    <span class="font-weight-normal">Дата:</span> {{ opportunity.date }}
+                    <span class="font-weight-normal">Дата:</span> {{
+                    opportunity.date }}
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal{{ opportunity.id }}"
+                >
                     Детальніше про можливість
                 </button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div
+                    class="modal fade"
+                    id="exampleModal{{ opportunity.id }}"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel{{ opportunity.id }}"
+                    aria-hidden="true"
+                >
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">{{ opportunity.activity }}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    {{ opportunity.activity }}
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
                             </div>
                             <div class="modal-body">
                                 <div class="card-text location-info">
-                                    <span class="font-weight-normal">Місце проведення:</span> {{ opportunity.location }}
+                                    <span class="font-weight-normal"
+                                        >Місце проведення:</span
+                                    >
+                                    {{ opportunity.location }}
                                 </div>
                                 <div class="card-text time-info">
-                                    <span class="font-weight-normal">Час:</span> {{ opportunity.time }}
+                                    <span class="font-weight-normal">Час:</span>
+                                    {{ opportunity.time }}
                                 </div>
                                 <div class="card-text email-info">
-                                    <span class="font-weight-normal">Електронна пошта:</span> {{ opportunity.email }}
+                                    <span class="font-weight-normal"
+                                        >Електронна пошта:</span
+                                    >
+                                    {{ opportunity.email }}
                                 </div>
                                 <div class="card-text phone-info">
-                                    <span class="font-weight-normal">Телефон:</span> {{ opportunity.phone }}
+                                    <span class="font-weight-normal"
+                                        >Телефон:</span
+                                    >
+                                    {{ opportunity.phone }}
                                 </div>
                                 <div class="card-text hours-info">
-                                    <span class="font-weight-normal">Кількість годин:</span> {{ opportunity.hours }}
+                                    <span class="font-weight-normal"
+                                        >Кількість годин:</span
+                                    >
+                                    {{ opportunity.hours }}
                                 </div>
                                 <div class="card-text description-info">
-                                    <span class="font-weight-normal">Опис:</span> {{ opportunity.description }}
+                                    <span class="font-weight-normal"
+                                        >Опис:</span
+                                    >
+                                    {{ opportunity.description }}
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Зареєструватись</button>
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary close"
+                                    onClick="confirmRegister({{ opportunity.id }})"
+                                >
+                                    Зареєструватись
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -133,49 +200,56 @@
             </div>
         </div>
     </div>
-    
+
     {% endfor %}
 </div>
 
-
-    
 <script>
-    document.getElementById('add-note-btn').addEventListener('click', function() {
-        document.getElementById('add-note-section').style.display = 'block';
-        document.getElementById('add-note-overlay').style.display = 'block';
-    });
+    document
+        .getElementById("add-note-btn")
+        .addEventListener("click", function () {
+            document.getElementById("add-note-section").style.display = "block";
+            document.getElementById("add-note-overlay").style.display = "block";
+        });
 
-    document.getElementById('add-note-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Handle form submission using JavaScript or submit via AJAX
-        // For simplicity, I'll just submit the form normally here
-        this.submit();
-    });
+    document
+        .getElementById("add-note-form")
+        .addEventListener("submit", function (event) {
+            event.preventDefault();
+            // Handle form submission using JavaScript or submit via AJAX
+            // For simplicity, I'll just submit the form normally here
+            this.submit();
+        });
 
     function updateCardLayout() {
-        var containerWidth = document.getElementById('notes-container').offsetWidth;
+        var containerWidth =
+            document.getElementById("notes-container").offsetWidth;
         var cardWidth = 18 * 16; // Assuming 1rem = 16px
         var cardsPerRow = Math.floor(containerWidth / cardWidth);
 
-        var cols = document.querySelectorAll('#notes-container .col');
+        var cols = document.querySelectorAll("#notes-container .col");
         cols.forEach(function (col) {
-            col.classList.remove('col-4', 'col-sm-6', 'col-md-4', 'col-lg-3');
-            col.classList.add('col-' + Math.floor(12 / cardsPerRow));
+            col.classList.remove("col-4", "col-sm-6", "col-md-4", "col-lg-3");
+            col.classList.add("col-" + Math.floor(12 / cardsPerRow));
         });
     }
 
     // Update card layout when the window is resized
-    window.addEventListener('resize', updateCardLayout);
+    window.addEventListener("resize", updateCardLayout);
 
     // Initial call to set the card layout
     updateCardLayout();
-    
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function confirmDelete(opportunityId) {
         if (confirm("Are you sure you want to delete this opportunity?")) {
             deleteActivity(opportunityId);
+        }
+    }
+    function confirmRegister(opportunityId) {
+        if (confirm("Are you sure you want to join this opportunity?")) {
+            addActivity(opportunityId);
         }
     }
 </script>

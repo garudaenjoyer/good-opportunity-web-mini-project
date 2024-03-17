@@ -1,7 +1,7 @@
 from sqlalchemy import desc
 from flask import Blueprint, render_template, url_for, redirect, flash, request, jsonify
 from flask_login import login_required, current_user, login_user
-from .models import Opportunity
+from .models import Opportunity, User
 from .models import db
 import json
 
@@ -36,3 +36,19 @@ def delete_oppor():
         flash('Opportunity was deleted', 'success')
     return jsonify({})
 
+@views.route('/register_opportunity', methods= ['POST'])
+def register_oppr():
+    data = json.loads(request.data)
+    opporId = data['opporId']
+    oppor = Opportunity.query.get(opporId)
+    if oppor:
+        user = User.query.get(current_user.id)
+        print(f"======={user.done_hours}=========")
+        user.done_hours += int(oppor.hours)
+        print(f"======={user.done_hours}=========")
+        # db.session.delete(oppor)
+        db.session.commit()
+        flash('Opportunity was added', 'success')
+        return jsonify({'message': 'Opportunity added successfully'}), 200
+    else:
+        return jsonify({'error': 'Opportunity not found'}), 404
