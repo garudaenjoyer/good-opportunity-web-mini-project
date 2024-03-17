@@ -48,12 +48,38 @@ def register_oppr():
     oppor = Opportunity.query.get(opporId)
     if oppor:
         user = User.query.get(current_user.id)
-        print(f"======={user.done_hours}=========")
-        user.done_hours += int(oppor.hours)
-        print(f"======={user.done_hours}=========")
-        # db.session.delete(oppor)
-        db.session.commit()
-        flash('Opportunity was added', 'success')
-        return jsonify({'message': 'Opportunity added successfully'}), 200
+        if user not in oppor.registered_users:
+            # print(f"======={user.done_hours}=========")
+            # user.done_hours += int(oppor.hours)
+            # print(f"======={user.done_hours}=========")
+            # # db.session.delete(oppor)
+            oppor.registered_users.append(user)
+            print(oppor.registered_users)
+            db.session.commit()
+            flash('You were registered', 'success')
+            return jsonify({'message': 'Opportunity added successfully'}), 200
+        else:
+            flash('You have already registered', 'success')
+            print(oppor.registered_users)
+            return jsonify({'error': 'You have already registered'}), 404
     else:
         return jsonify({'error': 'Opportunity not found'}), 404
+    
+
+@views.route('/registered_users/<int:opportunity_id>')
+def all_registered_users(opportunity_id):
+    opportunity = Opportunity.query.get_or_404(opportunity_id)
+    users = opportunity.registered_users
+    return render_template('all_users.html', users=users, opportunity=opportunity)
+
+@views.route('/process_users/<int:opportunity_id>', methods=['POST'])
+def process_users(opportunity_id):
+    selected_user_ids = request.form.getlist('user_ids')  # Get list of selected user IDs
+    opportunity_hours = request.args.get('hours', 0)   # Get opportunity hours
+    selected_users = User.query.filter(User.id.in_(selected_user_ids)).all()
+    opportunity = Opportunity.query.get_or_404(opportunity_id)
+    for user in selected_users:
+        user.done_hours += int(opportunity_hours)
+        opportunity.registered_users.pop(opportunity.registered_users.index(user))
+    db.session.commit()
+    return redirect(url_for('admin_view.admin'))

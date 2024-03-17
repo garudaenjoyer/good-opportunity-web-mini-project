@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+</head>
+<body>
+    <h1>All Users</h1>
+    <form action="/process_users/{{ opportunity.id }}?hours={{ opportunity.hours }}" method="post">
+        <input type="hidden" name="opportunity_hours" value="{{ opportunity.hours }}">
+        <ul>
+            {% for user in users %}
+            <li>
+                <input type="checkbox" name="user_ids" value="{{ user.id }}">
+                <label>{{ user.username }} - {{ user.email }}</label>
+            </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -122,6 +122,7 @@
                 >
                     Детальніше про можливість
                 </button>
+                
                 <div
                     class="modal fade"
                     id="exampleModal{{ opportunity.id }}"
@@ -193,6 +194,11 @@
                                 >
                                     Зареєструватись
                                 </button>
+                                {% if admin %}
+                                    <form action="/registered_users/{{ opportunity.id }}">
+                                        <button type="submit">All users</button>
+                                    </form>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

@@ -67,7 +67,7 @@ def sign_up():
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
 
-        program = request.form.get("program")
+        program = request.form.get("facultprogram")
         total_hours = int(request.form.get("total_time"))
         done_hours = int(request.form.get("done_hours"))
         email_exists = User.query.filter_by(email=email).first()

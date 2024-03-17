@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
     total_hours = db.Column(db.Integer)
     done_hours = db.Column(db.Integer)
 
+    
+    
+
 class Opportunity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(30))
@@ -28,4 +31,5 @@ class Opportunity(db.Model):
     email = db.Column(db.String(100))
     phone = db.Column(db.String(20))
     hours = db.Column(db.String(10))
-    
+    registered_users = db.relationship('User', secondary=user_opportunity, backref=db.backref('`opportunities`', lazy='dynamic'))
+
