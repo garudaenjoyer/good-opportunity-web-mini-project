@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/personal.css') }}">
+</head>
+<body>
+    <div class="container user">
+        <h2>{{ user.username }}</h2>
+        <p>Група навчання: {{ user.faculty }}</p>
+        <p>E-mail: {{ user.email }}</p>
+        <p>Кількість годин, які потрібно відпрацювати: {{ user.total_hours }}</p>
+        <!-- <p>Факультет: {{ user.faculty }}</p> -->
+
+        <h2>Використані можливості:</h2>
+
+        <ul>
+            {% for event in user.events %}
+                <li>{{ event.name }} - {{ event.date }}</li>
+            {% endfor %}
+        </ul>
+
+        <div class="progress-container">
+            <h2>Кількість відпрацьованих годин: {{user.done_hours}} </h2>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{ 0 if user.done_hours==0 else user.done_hours/user.total_hours }}%;" aria-valuenow="{{ scholarship_hours_completed }}" aria-valuemin="0" aria-valuemax="100">
+                    <span>{{ done_hours }} годин</span>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Edit Profile
+            </button> -->
+            <button type="button" class="btn btn-primary user-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Logout
+            </button>
+        </div>
+
+    </div>
+</body>
+</html>
+{% endblock %}

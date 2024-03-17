@@ -3,7 +3,6 @@
     padding: 20px;
     display:flex;
     justify-content:space-between;
-    margin-bottom: 30px;
 }
 
 .bar{
@@ -19,9 +18,10 @@
     text-decoration: none;
     font-family: 'JetBrains Mono', monospace;
 }
-.logo:hover{
+a:hover{
     color: rgb(224, 224, 224);
 }
+
 
 .nav_button{
     display:flex;
@@ -55,7 +55,7 @@
 }
 
 .btn-primary{
-    margin-top: 10px;
+    margin-top: 30px;
     background-color: #A63D3D;
     border: #A63D3D 2px solid;
     transition: 400ms;
@@ -112,6 +112,7 @@
 }
 
 .filters {
+    margin-top: 50px;
     display: inline-block;
     position: relative;
     color: #A63D3D;
@@ -157,4 +158,19 @@
 .dropdown-toggle:hover {
     text-decoration: underline;
     color: #771e1e;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style the form container */
+.form-container {
+    margin-top: 50px;
+    width: 500px; /* Set the width of the form */
+    padding: 20px;
+    /* border: 1px solid #771e1e; */
+    border-radius: 5px;
+    /* background-color: #f9f9f9; */
 }

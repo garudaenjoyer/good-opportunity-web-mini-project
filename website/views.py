@@ -36,6 +36,11 @@ def delete_oppor():
         flash('Opportunity was deleted', 'success')
     return jsonify({})
 
+@views.route('/personal_cab')
+@login_required
+def user_page():
+    # scholarship_hours_percentage = (scholarship_hours_completed / 60) * 100
+    return render_template('personal_cab.html', user=current_user)
 @views.route('/register_opportunity', methods= ['POST'])
 def register_oppr():
     data = json.loads(request.data)

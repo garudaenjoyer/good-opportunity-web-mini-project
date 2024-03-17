@@ -1,0 +1,72 @@
+body {
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    font-size: medium;
+  
+  }
+  
+  .user{
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* a {
+    color: #8e0606;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  } */
+  
+  .buttons{
+    display: flex;
+    align-content: center;
+    margin-top : 30px;
+    margin-bottom: 30px;
+  }
+  .user-button{
+    margin-left: 10px;
+  }
+  .progress-bar {
+    height: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #a72828;
+    transition: width 0.6s ease;
+    text-shadow: 1px 1px 1px rgba(248, 200, 200, 0.5);
+  
+  }
+  .progress {
+    height: 30px;
+    font-size: large;
+    background-color: #ffffff;
+  }
+  
+  .progress-container{
+    background-color: #e8e7e7;
+    padding: 30px;
+    border-radius: 5px;
+    margin-top: 40px;
+  }
+  
