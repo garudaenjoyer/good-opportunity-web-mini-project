@@ -9,7 +9,6 @@ auth = Blueprint('auth', __name__)
 
 
 
-#by default, method is get, but we extended it to get and post
 @auth.route('/login', methods= ['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -26,21 +25,34 @@ def login():
         else:
             flash('Email does not exits', category='error')
     return render_template('login.html', user= current_user, admin= False)
-
-@auth.route('/sign-up', methods = ['GET', 'POST'])
+@auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
+    form_data = {
+        'email': '',
+        'username': '',
+        'faculty': '',
+        'total_hours': '',
+        'done_hours': ''
+    }
+
     if request.method == 'POST':
         email = request.form.get("email")
         username = request.form.get("username")
-        #using request, getting into form, and getting username
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
-
         faculty = request.form.get("faculty")
         total_hours = int(request.form.get("total_time"))
         done_hours = int(request.form.get("done_hours"))
         email_exists = User.query.filter_by(email=email).first()
         username_exists = User.query.filter_by(username=username).first()
+
+        form_data = {
+            'email': email,
+            'username': username,
+            'faculty': faculty,
+            'total_hours': total_hours,
+            'done_hours': done_hours
+        }
 
         if email_exists:
             flash('Email already exists', category='error')
@@ -53,23 +65,17 @@ def sign_up():
         elif len(password1) < 6:
             flash('Password is too short', category='error')
         elif total_hours > 60:
-            flash(f'{total_hours} is to many', category='error')
+            flash(f'{total_hours} is too many', category='error')
         else:
-            #else create user
-            new_user = User(email= email, 
-                            username= username, 
-                            password = generate_password_hash(password1, method='scrypt'), 
-                            faculty = faculty,
-                            total_hours = total_hours,
-                            done_hours = done_hours)
+            new_user = User(email=email, username=username, password=generate_password_hash(password1, method='scrypt'),
+                            faculty=faculty, total_hours=total_hours, done_hours=done_hours)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
             flash('User created!', category='success')
             return redirect(url_for('views.home'))
-        
-    return render_template('sign-up.html', user= current_user, admin= False)
 
+    return render_template('sign-up.html', user=current_user, admin=False, form_data=form_data)
 
 @auth.route('/logout')
 @login_required
