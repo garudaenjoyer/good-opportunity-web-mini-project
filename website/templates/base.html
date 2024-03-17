@@ -23,11 +23,9 @@
 
     <body>
         <nav class="menu">
-            <div class="container-fluid">
-              <a class="logo" href="/home">
-                Можливості
-              </a>
-            </div>
+            <a class="logo" href="/home">
+              Можливості
+            </a>
             {% if not admin %}
               {% if user.is_authenticated %}
               <div class = 'nav_button'>
