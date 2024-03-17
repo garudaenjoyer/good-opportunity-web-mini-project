@@ -30,10 +30,10 @@
         </ul>
 
         <div class="progress-container">
-            <h2>Кількість відпрацьованих годин: {{user.done_hours}} </h2>
+            <h2>Кількість відпрацьованих годин: {{ user.done_hours }} </h2>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: {{ 0 if user.done_hours==0 else user.done_hours/user.total_hours }}%;" aria-valuenow="{{ scholarship_hours_completed }}" aria-valuemin="0" aria-valuemax="100">
-                    <span>{{ done_hours }} годин</span>
+                <div class="progress-bar" role="progressbar" style="width: {{ (user.done_hours/user.total_hours)*100 }}%;" aria-valuenow="{{ (user.done_hours/user.total_hours)*100 }}" aria-valuemin="0" aria-valuemax="100">
+                    <span>{{ user.done_hours }} годин</span>
                 </div>
             </div>
         </div>
