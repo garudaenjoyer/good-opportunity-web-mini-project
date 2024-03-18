@@ -31,5 +31,5 @@ class Opportunity(db.Model):
     email = db.Column(db.String(100))
     phone = db.Column(db.String(20))
     hours = db.Column(db.String(10))
-    registered_users = db.relationship('User', secondary=user_opportunity, backref=db.backref('`opportunities`', lazy='dynamic'))
+    registered_users = db.relationship('User', secondary=user_opportunity, backref=db.backref('opportunities', lazy='dynamic'))
 
