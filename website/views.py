@@ -48,7 +48,7 @@ def register_oppr():
     oppor = Opportunity.query.get(opporId)
     if oppor:
         user = User.query.get(current_user.id)
-        if user not in oppor.registered_users:
+        if user not in oppor.registered_users and len(oppor.registered_users) < oppor.user_limit:
             # print(f"======={user.done_hours}=========")
             # user.done_hours += int(oppor.hours)
             # print(f"======={user.done_hours}=========")
@@ -58,10 +58,14 @@ def register_oppr():
             db.session.commit()
             flash('You were registered', 'success')
             return jsonify({'message': 'Opportunity added successfully'}), 200
-        else:
-            flash('You have already registered', 'success')
+        elif user in oppor.registered_users:
+            flash('You have already registered', 'error')
             print(oppor.registered_users)
             return jsonify({'error': 'You have already registered'}), 404
+        else:
+            flash('There was richen the limit of participants', 'error')
+            print(oppor.registered_users)
+            return jsonify({'error': 'There was richen the limit of participants'}), 404
     else:
         return jsonify({'error': 'Opportunity not found'}), 404
     

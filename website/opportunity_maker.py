@@ -19,10 +19,12 @@ def add_opportunity():
             email = request.form['email']
             phone = request.form['phone']
             hours = request.form['hours']
+            limit = int(request.form['limit'])
             if date and activity and description and location and time\
-and email and phone and hours:
+and email and phone and hours and limit:
                 opportunity = Opportunity(date=date, activity=activity, description=description,
-                                        location=location, time=time, email=email, phone=phone, hours=hours)
+                                        location=location, time=time, email=email, phone=phone, hours=hours,
+                                        user_limit = limit)
                 db.session.add(opportunity)
                 db.session.commit()
                 flash('Opportunity created successfully', 'success')
@@ -45,7 +47,8 @@ def generate_dummy_opportunities():
     'time': '9:00 AM - 12:00 PM',
     'email': 'volunteer@communitycleanup.org',
     'phone': '555-123-4567',
-    'hours': '4'
+    'hours': '4',
+    'limit': '3'
 },
 {
     'date': '2024-03-20',
@@ -55,7 +58,8 @@ def generate_dummy_opportunities():
     'time': '10:00 AM - 11:30 AM',
     'email': 'reading@library.org',
     'phone': '555-987-6543',
-    'hours': '2'
+    'hours': '2',
+    'limit': '3'
 },
 {
     'date': '2024-03-25',
@@ -65,7 +69,8 @@ def generate_dummy_opportunities():
     'time': '2:00 PM - 4:00 PM',
     'email': 'fooddrive@communitycenter.org',
     'phone': '555-789-0123',
-    'hours': '3'
+    'hours': '3',
+    'limit': '3'
 },
 {
     'date': '2024-03-30',
@@ -75,7 +80,8 @@ def generate_dummy_opportunities():
     'time': '1:30 PM - 3:30 PM',
     'email': 'seniors@seniorcenter.org',
     'phone': '555-321-6548',
-    'hours': '2'
+    'hours': '2',
+    'limit': '3'
 },
 {
     'date': '2024-04-05',
@@ -85,7 +91,8 @@ def generate_dummy_opportunities():
     'time': '9:00 AM - 11:00 AM',
     'email': 'parkcleanup@citypark.org',
     'phone': '555-456-7890',
-    'hours': '2'
+    'hours': '2',
+    'limit': '3'
 }
 
     ]
@@ -99,7 +106,8 @@ def generate_dummy_opportunities():
             time=data['time'],
             email=data['email'],
             phone=data['phone'],
-            hours=data['hours']
+            hours=data['hours'],
+            user_limit=data['limit']
         )
         db.session.add(opportunity)
     

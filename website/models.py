@@ -32,3 +32,4 @@ class Opportunity(db.Model):
     phone = db.Column(db.String(20))
     hours = db.Column(db.String(10))
     registered_users = db.relationship('User', secondary=user_opportunity, backref=db.backref('opportunities', lazy='dynamic'))
+    user_limit = db.Column(db.Integer)
