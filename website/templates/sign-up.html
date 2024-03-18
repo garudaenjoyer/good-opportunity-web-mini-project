@@ -1,4 +1,4 @@
-{% extends "base.html" %}   
+{% extends "base.html" %}
 {% block title %}Sign-up{% endblock %}
 {% block content %}
 <div class="center">
@@ -12,35 +12,35 @@
                 <input type="text" 
                     id="email" 
                     name="email" 
-                    class="form-control" 
+                    class="form-control highlightable" 
                     placeholder="Enter Email"
                     value="{{ form_data.get('email', '') }}">
                 <label for='username'>Name Surname</label>
                 <input type="text" 
                     id="username" 
                     name="username" 
-                    class="form-control" 
+                    class="form-control highlightable" 
                     placeholder="Enter username"
                     value="{{ form_data.get('username', '') }}">
                 <label for='faculty'>Faculty</label>
                 <input type="text" 
                     id="faculty" 
                     name="faculty" 
-                    class="form-control" 
+                    class="form-control highlightable" 
                     placeholder="Enter your faculty e.g. ПКН23/Б"
                     value="{{ form_data.get('faculty', '') }}">
-                <label for='total_time'>Total hours</label>
+                <label for='total_hours'>Total hours</label>
                 <input type="number" 
-                    id="total_time" 
-                    name="total_time" 
-                    class="form-control" 
+                    id="total_hours" 
+                    name="total_hours" 
+                    class="form-control highlightable" 
                     placeholder="Enter total amount of hours to be done"
-                    value="{{ form_data.get('total_time', '') }}">
+                    value="{{ form_data.get('total_hours', '') }}">
                 <label for='done_hours'>Done hours</label>
                 <input type="number" 
                     id="done_hours" 
                     name="done_hours" 
-                    class="form-control" 
+                    class="form-control highlightable" 
                     placeholder="Enter amount of completed hours"
                     value="{{ form_data.get('done_hours', '') }}">
                 <label for='password1'>Password</label>
@@ -57,10 +57,44 @@
                     placeholder="Enter password again">
                 <br>
                 <div align="center">
-                    <button class="btn btn-primary" type="submit">Sign-up
+                    <button class="btn btn-primary" type="submit">Sign-up</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Highlight empty fields in green and filled fields in burgundy
+        $('.highlightable').each(function() {
+            if ($(this).val() === '') {
+                $(this).addClass('empty');
+            } else {
+                $(this).addClass('filled');
+            }
+        });
+
+        // Update field highlight on input change
+        $('.highlightable').on('input', function() {
+            if ($(this).val() === '') {
+                $(this).addClass('empty').removeClass('filled');
+            } else {
+                $(this).addClass('filled').removeClass('empty');
+            }
+        });
+    });
+</script>
+<style>
+    .empty {
+        box-shadow: 0 0 5px rgb(253, 154, 147);
+        border-color: rgb(248, 177, 153);
+    }
+
+    .filled {
+        box-shadow: 0 0 5px rgb(190, 233, 159);
+        border-color: rgb(186, 248, 153);
+    }
+</style>
 {% endblock %}

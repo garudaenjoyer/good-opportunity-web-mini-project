@@ -8,8 +8,6 @@ import re
 #redirect, url-for: for example in logout: redirects to views.home
 auth = Blueprint('auth', __name__)
 
-
-
 @auth.route('/login', methods= ['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -26,6 +24,7 @@ def login():
         else:
             flash('Email does not exits', category='error')
     return render_template('login.html', user= current_user, admin= False)
+
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     form_data = {
@@ -42,8 +41,8 @@ def sign_up():
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
         faculty = request.form.get("faculty")
-        total_hours = int(request.form.get("total_time"))
-        done_hours = int(request.form.get("done_hours"))
+        total_hours = request.form.get("total_hours")
+        done_hours = request.form.get("done_hours")
         email_exists = User.query.filter_by(email=email).first()
         username_exists = User.query.filter_by(username=username).first()
 
@@ -57,28 +56,49 @@ def sign_up():
 
         if email_exists:
             flash('Email already exists', category='error')
-        elif bool(re.match('^[a-zA-Z0-9._%+-]+@ucu\.edu\.ua$', email)) is False:
-            flash('Username shoud use "ucu.edu.ua" domain', category='error')
+            form_data['email'] = ''
+        elif not re.match('^[a-zA-Z0-9._%+-]+@ucu\.edu\.ua$', email):
+            flash('Email should use "ucu.edu.ua" domain', category='error')
+            form_data['email'] = ''
         elif username_exists:
             flash('Username already exists', category='error')
+            form_data['username'] = ''
         elif password1 != password2:
             flash('Passwords don\'t match', category='error')
         elif len(username) < 2:
+            form_data['username'] = ''
             flash('Username is too short', category='error')
         elif len(password1) < 6:
             flash('Password is too short', category='error')
-        elif total_hours > 60:
-            flash(f'{total_hours} is to many', category='error')
-        elif bool(re.match('^[А-Я]{3}\d{2}/[А-Я]$', faculty)) is False:
-            flash('There is no such faculty')
-        else:
+        elif not total_hours:
+            form_data['total_hours'] = ''
+            flash('You forgot to fill in total hours', category='error')
+        elif int(total_hours) > 60:
+            form_data['total_hours'] = ''
+            flash('Total hours cannot exceed 60', category='error')
+        elif not done_hours:
+            flash('You forgot to fill in done hours', category='error')
+        elif not re.match('^[А-Я]{3}\d{2}/[А-Я]$', faculty):
+            form_data['faculty'] = ''
+            flash('Invalid faculty format', category='error')
 
-            new_user = User(email= email, 
-                            username= username, 
-                            password = generate_password_hash(password1, method='scrypt'), 
-                            faculty = faculty,
-                            total_hours = total_hours,
-                            done_hours = done_hours)
+        else:
+            try:
+                total_hours = int(total_hours)
+            except ValueError:
+                total_hours = 60
+
+            try:
+                done_hours = int(done_hours)
+            except ValueError:
+                done_hours = 0
+
+            new_user = User(email=email, 
+                            username=username, 
+                            password=generate_password_hash(password1, method='scrypt'), 
+                            faculty=faculty,
+                            total_hours=total_hours,
+                            done_hours=done_hours)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
