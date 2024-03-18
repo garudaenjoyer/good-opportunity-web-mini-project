@@ -62,7 +62,7 @@ def sign_up():
     form_data = {
         'email': '',
         'username': '',
-        'faculty': '',
+        'program': '',
         'total_hours': '',
         'done_hours': ''
     }
@@ -82,7 +82,7 @@ def sign_up():
         form_data = {
             'email': email,
             'username': username,
-            'faculty': faculty,
+            'program': program,
             'total_hours': total_hours,
             'done_hours': done_hours
         }
@@ -101,7 +101,7 @@ def sign_up():
             flash('Password is too short', category='error')
         elif total_hours > 60:
             flash(f'{total_hours} is to many', category='error')
-        elif bool(re.match('^[А-Я]{3}\d{2}/[А-Я]$', faculty)) is False:
+        elif bool(re.match('^[А-Я]{3}\d{2}/[А-Я]$', program)) is False:
             flash('There is no such faculty')
         else:
 
