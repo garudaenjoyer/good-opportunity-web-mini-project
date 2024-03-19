@@ -7,7 +7,8 @@ import re
 # render-templare: able to register html templates
 #redirect, url-for: for example in logout: redirects to views.home
 
-DICT_FACUL = {"ПКН": "Факультет прикладних наук", 
+DICT_FACUL = {
+              "ПКН": "Факультет прикладних наук", 
               "ПСА": "Факультет прикладних наук", 
               "ГКУ": "Гуманітарний факультет", 
               "ГФІ": "Гуманітарний факультет", 
@@ -127,7 +128,7 @@ def sign_up():
             flash('User created!', category='success')
             return redirect(url_for('views.home'))
 
-    return render_template('sign-up.html', user=current_user, admin=False, form_data=form_data)
+    return render_template('sign-up.html', user=current_user, admin=False, form_data=form_data, DICT_FACUL= DICT_FACUL)
 
 @auth.route('/logout')
 @login_required
