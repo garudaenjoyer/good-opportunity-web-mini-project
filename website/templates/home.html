@@ -98,7 +98,7 @@
                     <!-- Кнопка видалення -->
                     <button
                         type="button"
-                        class="btn btn-primary close"
+                        class="btn btn-primary delete"
                         onClick="confirmDelete({{ opportunity.id }})"
                     >
                         <span aria-hidden="true">&times;</span>
@@ -109,6 +109,11 @@
                 <div class="card-text faculty-info">
                     <span class="font-weight-light">Факультет</span>
                     <span class="font-weight-normal">:</span> Усі
+                </div>
+                
+                <div class="card-text date-info">
+                    <span class="font-weight-normal">Кількість годин:</span> {{
+                    opportunity.hours }}
                 </div>
                 <div class="card-text date-info">
                     <span class="font-weight-normal">Дата:</span> {{

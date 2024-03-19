@@ -109,9 +109,23 @@ a:hover{
 }
 
 .hello{
+    /* background-color: greenyellow; */
     display: flex;
     justify-content: space-between;
     height: 50px;
+}
+.delete{
+    margin-top: 0px;
+    padding: 7px;
+    width: 40px;
+    height: 40px;
+    background-color: #fff !important;
+    color: #A63D3D;
+}
+.delete:hover{
+    background-color: #A63D3D !important;
+    color: #fff !important;
+    font-weight: 400;
 }
 .close{
     background-color: #fff;

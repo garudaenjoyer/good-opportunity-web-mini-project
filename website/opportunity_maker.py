@@ -31,7 +31,7 @@ and email and phone and hours and limit:
                 return redirect(url_for('admin_view.admin'))
             flash('Please fill all forms', 'error')
             return redirect(url_for('admin_view.admin'))
-        return render_template('add_opportunity.html', add_opportunity=True, user=current_user)
+        return render_template('add_opportunity.html', add_opportunity=True, user=current_user, admin = True)
     else:
         abort(404)
 
