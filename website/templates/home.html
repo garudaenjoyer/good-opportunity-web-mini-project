@@ -110,7 +110,7 @@
                     <span class="font-weight-light">Факультет</span>
                     <span class="font-weight-normal">:</span> Усі
                 </div>
-                
+
                 <div class="card-text date-info">
                     <span class="font-weight-normal">Кількість годин:</span> {{
                     opportunity.hours }}
@@ -120,10 +120,9 @@
                     opportunity.date }}
                 </div>
                 <div class="card-text description-info">
-                    <span class="font-weight-normal"
-                        >Потрібно волонтерів:</span
-                    >
-                    {{ len(opportunity.registered_users) }}/{{ opportunity.user_limit }}
+                    <span class="font-weight-normal">Потрібно волонтерів:</span>
+                    {{ opportunity.registered_users | length }}/{{
+                    opportunity.user_limit }}
                 </div>
                 <button
                     type="button"
@@ -198,20 +197,23 @@
                             </div>
                             <div class="modal-footer">
                                 {% if not admin %}
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary"
-                                        onClick="confirmRegister({{ opportunity.id }})"
-                                    >
-                                        Зареєструватись
-                                    </button>
-                                {% endif %}
-                                {% if admin %}
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    onClick="confirmRegister({{ opportunity.id }})"
+                                >
+                                    Зареєструватись
+                                </button>
+                                {% endif %} {% if admin %}
                                 <form
                                     action="/registered_users/{{ opportunity.id }}"
                                 >
-                                    <button type="submit button"
-                                    class="btn btn-primary">All users</button>
+                                    <button
+                                        type="submit button"
+                                        class="btn btn-primary"
+                                    >
+                                        All users
+                                    </button>
                                 </form>
                                 {% endif %}
                             </div>
@@ -274,6 +276,5 @@
         }
     }
 </script>
-
 
 {% endblock %}

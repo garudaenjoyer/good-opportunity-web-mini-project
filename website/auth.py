@@ -110,7 +110,7 @@ def sign_up():
             flash('Total hours cannot exceed 60', category='error')
         elif not done_hours:
             flash('You forgot to fill in done hours', category='error')
-        elif not re.match('^[А-Я]{3}\d{2}/[А-Я]$', program):
+        elif not program:
             form_data['program'] = ''
             flash('Invalid program format', category='error')
 
