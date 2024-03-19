@@ -23,7 +23,7 @@ def home():
     else:
         opportunities = Opportunity.query.all()
 
-    return render_template('home.html', user=current_user, admin=False, opportunities= opportunities)
+    return render_template('home.html', user=current_user, admin=False, opportunities= opportunities, len=len)
 
 @views.route('/delete_opportunity', methods= ['POST'])
 def delete_oppor():
@@ -68,13 +68,13 @@ def register_oppr():
             return jsonify({'error': 'There was richen the limit of participants'}), 404
     else:
         return jsonify({'error': 'Opportunity not found'}), 404
-    
+
 
 @views.route('/registered_users/<int:opportunity_id>')
 def all_registered_users(opportunity_id):
     opportunity = Opportunity.query.get_or_404(opportunity_id)
     users = opportunity.registered_users
-    return render_template('all_users.html', users=users, opportunity=opportunity)
+    return render_template('all_users.html', user = current_user,admin=True, users=users, opportunity=opportunity)
 
 @views.route('/process_users/<int:opportunity_id>', methods=['POST'])
 def process_users(opportunity_id):
