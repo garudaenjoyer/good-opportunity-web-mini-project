@@ -1,63 +1,76 @@
-{% extends "base.html" %}
-{% block title %}Sign-up{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Sign-up{% endblock %} {% block
+content %}
 <div class="center">
     <div class="form-container">
         <form method="POST">
-            <h3 align="center"> 
-                Sign-up
-            </h3>
+            <h3 align="center">Sign-up</h3>
             <div class="form-group">
-                <label for='email'>Email Address</label>
-                <input type="text" 
-                    id="email" 
-                    name="email" 
-                    class="form-control highlightable" 
+                <label for="email">Email Address</label>
+                <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    class="form-control highlightable"
                     placeholder="Enter Email"
-                    value="{{ form_data.get('email', '') }}">
-                <label for='username'>Name Surname</label>
-                <input type="text" 
-                    id="username" 
-                    name="username" 
-                    class="form-control highlightable" 
+                    value="{{ form_data.get('email', '') }}"
+                />
+                <label for="username">Name Surname</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    class="form-control highlightable"
                     placeholder="Enter username"
-                    value="{{ form_data.get('username', '') }}">
-                <label for='faculty'>Faculty</label>
-                <input type="text" 
-                    id="faculty" 
-                    name="faculty" 
-                    class="form-control highlightable" 
-                    placeholder="Enter your faculty e.g. ПКН23/Б"
-                    value="{{ form_data.get('faculty', '') }}">
-                <label for='total_hours'>Total hours</label>
-                <input type="number" 
-                    id="total_hours" 
-                    name="total_hours" 
-                    class="form-control highlightable" 
+                    value="{{ form_data.get('username', '') }}"
+                />
+                <label for="program">Program</label>
+                <input
+                    type="text"
+                    id="program"
+                    name="program"
+                    class="form-control highlightable"
+                    placeholder="Enter your program e.g. ПКН23/Б"
+                    value="{{ form_data.get('program', '') }}"
+                />
+                <label for="total_hours">Total hours</label>
+                <input
+                    type="number"
+                    id="total_hours"
+                    name="total_hours"
+                    class="form-control highlightable"
                     placeholder="Enter total amount of hours to be done"
-                    value="{{ form_data.get('total_hours', '') }}">
-                <label for='done_hours'>Done hours</label>
-                <input type="number" 
-                    id="done_hours" 
-                    name="done_hours" 
-                    class="form-control highlightable" 
+                    value="{{ form_data.get('total_hours', '') }}"
+                />
+                <label for="done_hours">Done hours</label>
+                <input
+                    type="number"
+                    id="done_hours"
+                    name="done_hours"
+                    class="form-control highlightable"
                     placeholder="Enter amount of completed hours"
-                    value="{{ form_data.get('done_hours', '') }}">
-                <label for='password1'>Password</label>
-                <input type="password" 
-                    id="password1" 
-                    name="password1" 
-                    class="form-control" 
-                    placeholder="Enter Password">
-                <label for='password2'>Password Again</label>
-                <input type="password" 
-                    id="password2" 
-                    name="password2" 
-                    class="form-control" 
-                    placeholder="Enter password again">
-                <br>
+                    value="{{ form_data.get('done_hours', '') }}"
+                />
+                <label for="password1">Password</label>
+                <input
+                    type="password"
+                    id="password1"
+                    name="password1"
+                    class="form-control"
+                    placeholder="Enter Password"
+                />
+                <label for="password2">Password Again</label>
+                <input
+                    type="password"
+                    id="password2"
+                    name="password2"
+                    class="form-control"
+                    placeholder="Enter password again"
+                />
+                <br />
                 <div align="center">
-                    <button class="btn btn-primary" type="submit">Sign-up</button>
+                    <button class="btn btn-primary" type="submit">
+                        Sign-up
+                    </button>
                 </div>
             </div>
         </form>
@@ -66,22 +79,22 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Highlight empty fields in green and filled fields in burgundy
-        $('.highlightable').each(function() {
-            if ($(this).val() === '') {
-                $(this).addClass('empty');
+        $(".highlightable").each(function () {
+            if ($(this).val() === "") {
+                $(this).addClass("empty");
             } else {
-                $(this).addClass('filled');
+                $(this).addClass("filled");
             }
         });
 
         // Update field highlight on input change
-        $('.highlightable').on('input', function() {
-            if ($(this).val() === '') {
-                $(this).addClass('empty').removeClass('filled');
+        $(".highlightable").on("input", function () {
+            if ($(this).val() === "") {
+                $(this).addClass("empty").removeClass("filled");
             } else {
-                $(this).addClass('filled').removeClass('empty');
+                $(this).addClass("filled").removeClass("empty");
             }
         });
     });

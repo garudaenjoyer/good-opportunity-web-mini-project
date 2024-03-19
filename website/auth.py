@@ -71,7 +71,7 @@ def sign_up():
         username = request.form.get("username")
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
-        faculty = request.form.get("faculty")
+        program = request.form.get("program")
         total_hours = request.form.get("total_hours")
         done_hours = request.form.get("done_hours")
         email_exists = User.query.filter_by(email=email).first()
@@ -109,16 +109,16 @@ def sign_up():
             flash('Total hours cannot exceed 60', category='error')
         elif not done_hours:
             flash('You forgot to fill in done hours', category='error')
-        elif not re.match('^[А-Я]{3}\d{2}/[А-Я]$', faculty):
-            form_data['faculty'] = ''
-            flash('Invalid faculty format', category='error')
+        elif not re.match('^[А-Я]{3}\d{2}/[А-Я]$', program):
+            form_data['program'] = ''
+            flash('Invalid program format', category='error')
 
         else:
-
             new_user = User(email=email, 
                             username=username, 
                             password=generate_password_hash(password1, method='scrypt'), 
-                            faculty=faculty,
+                            program=program,
+                            faculty=DICT_FACUL[program[:3]],
                             total_hours=total_hours,
                             done_hours=done_hours)
             db.session.add(new_user)
