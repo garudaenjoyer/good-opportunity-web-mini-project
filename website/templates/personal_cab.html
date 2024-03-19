@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}My account{% endblock %}
 
 {% block content %}
 
@@ -16,16 +16,16 @@
 <body>
     <div class="container user">
         <h2>{{ user.username }}</h2>
-        <p>Група навчання: {{ user.faculty }}</p>
-        <p>E-mail: {{ user.email }}</p>
-        <p>Кількість годин, які потрібно відпрацювати: {{ user.total_hours }}</p>
+        <p class="info">Група навчання: {{ user.faculty }}</p>
+        <p class="info">E-mail: {{ user.email }}</p>
+        <p class="info">Кількість годин, які потрібно відпрацювати: {{ user.total_hours }}</p>
         <!-- <p>Факультет: {{ user.faculty }}</p> -->
 
-        <h2>Використані можливості:</h2>
+        <h2>На що я погодився?</h2>
 
         <ul>
             {% for event in user.opportunities %}
-                <li>{{ event.activity }} - {{ event.date }}</li>
+                <li>{{ event.activity }} - {{ event.date }}, {{ event.time }}</li>
             {% endfor %}
         </ul>
 

@@ -119,6 +119,12 @@
                     <span class="font-weight-normal">Дата:</span> {{
                     opportunity.date }}
                 </div>
+                <div class="card-text description-info">
+                    <span class="font-weight-normal"
+                        >Потрібно волонтерів:</span
+                    >
+                    {{ len(opportunity.registered_users) }}/{{ opportunity.user_limit }}
+                </div>
                 <button
                     type="button"
                     class="btn btn-primary"
@@ -191,18 +197,21 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    onClick="confirmRegister({{ opportunity.id }})"
-                                >
-                                    Зареєструватись
-                                </button>
+                                {% if not admin %}
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary"
+                                        onClick="confirmRegister({{ opportunity.id }})"
+                                    >
+                                        Зареєструватись
+                                    </button>
+                                {% endif %}
                                 {% if admin %}
                                 <form
                                     action="/registered_users/{{ opportunity.id }}"
                                 >
-                                    <button type="submit">All users</button>
+                                    <button type="submit button"
+                                    class="btn btn-primary">All users</button>
                                 </form>
                                 {% endif %}
                             </div>
@@ -265,5 +274,6 @@
         }
     }
 </script>
+
 
 {% endblock %}
