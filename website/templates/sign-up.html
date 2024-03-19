@@ -23,12 +23,11 @@
         placeholder="Enter username"
         >
         <label for='program'>Program</label>
-        <input type="text" 
-        id="facultprogram" 
-        name="facultprogram" 
-        class="form-control" 
-        placeholder="Enter your program e.g. ПКН/23"
-        >
+        <select id="program" name="program" class="form-control">
+            {% for key in DICT_FACUL.keys() %}
+                <option value="{{ key }}">{{ key }}</option>
+            {% endfor %}
+        </select>
         <label for='total_time'>Total hours</label>
         <input type="number" 
         id="total_time" 

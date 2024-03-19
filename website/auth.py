@@ -7,7 +7,8 @@ import re
 # render-templare: able to register html templates
 #redirect, url-for: for example in logout: redirects to views.home
 
-DICT_FACUL = {"ПКН": "Факультет прикладних наук", 
+DICT_FACUL = {
+              "ПКН": "Факультет прикладних наук", 
               "ПСА": "Факультет прикладних наук", 
               "ГКУ": "Гуманітарний факультет", 
               "ГФІ": "Гуманітарний факультет", 
@@ -72,8 +73,7 @@ def sign_up():
         username = request.form.get("username")
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
-
-        program = request.form.get("facultprogram")
+        program = request.form.get("program")
         total_hours = int(request.form.get("total_time"))
         done_hours = int(request.form.get("done_hours"))
         email_exists = User.query.filter_by(email=email).first()
@@ -82,7 +82,7 @@ def sign_up():
         form_data = {
             'email': email,
             'username': username,
-            'faculty': faculty,
+            'faculty': DICT_FACUL[program[:3]],
             'total_hours': total_hours,
             'done_hours': done_hours
         }
@@ -101,8 +101,6 @@ def sign_up():
             flash('Password is too short', category='error')
         elif total_hours > 60:
             flash(f'{total_hours} is to many', category='error')
-        elif bool(re.match('^[А-Я]{3}\d{2}/[А-Я]$', faculty)) is False:
-            flash('There is no such faculty')
         else:
 
             new_user = User(email= email, 
@@ -118,7 +116,7 @@ def sign_up():
             flash('User created!', category='success')
             return redirect(url_for('views.home'))
 
-    return render_template('sign-up.html', user=current_user, admin=False, form_data=form_data)
+    return render_template('sign-up.html', user=current_user, admin=False, form_data=form_data, DICT_FACUL= DICT_FACUL)
 
 @auth.route('/logout')
 @login_required
