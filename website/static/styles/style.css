@@ -29,8 +29,16 @@ form {
     flex-direction: column;
 }
 #sign-up-form {
-    width: 40%;
+    margin-top: 50px;
+    width: 500px;
 }
+
+@media (max-width: 520px) {
+    #sign-up-form {
+        width: 300px;
+    }
+}
+
 .nav_button {
     display: flex;
     justify-content: space-between;
