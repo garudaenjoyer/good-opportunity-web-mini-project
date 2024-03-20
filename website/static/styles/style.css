@@ -1,0 +1,240 @@
+.menu {
+    background-color: #a63d3d;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bar {
+    color: #fff;
+    text-decoration: none;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 20px;
+}
+.logo {
+    /* background-color: green; */
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    font-family: "JetBrains Mono", monospace;
+}
+a:hover {
+    color: rgb(224, 224, 224);
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#sign-up-form {
+    width: 40%;
+}
+.nav_button {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.circle {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(213, 213, 213);
+    border-radius: 50px;
+}
+.log-out {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+@media (max-width: 520px) {
+    .circle {
+        display: none;
+    }
+    .logo {
+        font-size: 25px;
+    }
+    .log-out {
+        font-size: 15px;
+    }
+}
+
+.btn-primary {
+    color: #f7f7f7;
+    margin-top: 30px;
+    background-color: #a63d3d !important;
+    border: #a63d3d 2px solid !important;
+    transition: 400ms;
+    display: flex;
+    justify-content: center;
+}
+.btn-primary:hover {
+    color: #a63d3d !important;
+    background-color: #473f3f00 !important;
+    border-width: 2px !important;
+    border-color: #a63d3d !important;
+    box-shadow: 0 0 0 0.25rem rgba(166, 61, 61, 0.5); /* Red shadow */
+}
+.btn-primary:active,
+.btn-primary:focus {
+    color: #a63d3d !important;
+    background-color: #473f3f00 !important;
+    border-width: 2px !important;
+    border-color: #a63d3d !important;
+    outline: none; /* Remove the default blue outline on focus */
+    box-shadow: 0 0 0 0.25rem rgba(166, 61, 61, 0.5) !important; /* Red shadow */
+}
+
+.nav-item.nav-link.bar:visited {
+    color: #f7f7f7; /* Change the color to red (#A63D3D) for visited links */
+}
+
+.row {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.grid-container .cell {
+    margin-bottom: 30px;
+    width: 500px;
+}
+
+.card {
+    margin: 20px;
+}
+
+.hello {
+    /* background-color: greenyellow; */
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+.delete {
+    margin-top: 0px;
+    padding: 7px;
+    width: 40px;
+    height: 40px;
+    background-color: #fff !important;
+    color: #a63d3d;
+}
+.delete:hover {
+    background-color: #a63d3d !important;
+    color: #fff !important;
+    font-weight: 400;
+}
+.close {
+    background-color: #fff;
+    color: #a63d3d;
+}
+.close:hover {
+    background-color: #a63d3d;
+    color: #fff;
+    font-weight: 400;
+}
+
+.filters {
+    margin-top: 50px;
+    display: inline-block;
+    position: relative;
+    color: #a63d3d;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Style for the dropdown toggle link */
+.dropdown-toggle {
+    color: #a63d3d;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: medium;
+}
+
+/* Hover effect for the dropdown toggle link */
+.dropdown-toggle:hover {
+    text-decoration: underline;
+    color: #771e1e;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style the form container */
+.form-container {
+    margin-top: 50px;
+    width: 500px; /* Set the width of the form */
+    padding: 20px;
+    /* border: 1px solid #771e1e; */
+    border-radius: 5px;
+    /* background-color: #f9f9f9; */
+}
+@media only screen and (max-width: 600px) {
+    .nav_button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-link {
+        font-size: 15px;
+        font-weight: 200;
+        margin: 7px;
+        border: 1px solid #f7f7f7;
+        padding: 5px 10px;
+        margin-bottom: 5px;
+        text-align: center;
+        width: 80%; /* Set a width to prevent full width */
+        box-sizing: border-box; /* Include padding and border in the total width */
+    }
+    .menu {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.footer {
+    margin-top: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #771e1e;
+    color: #f8f8f8 !important;
+    text-align: center;
+    padding: 10px 0;
+    opacity: 20%;
+}
