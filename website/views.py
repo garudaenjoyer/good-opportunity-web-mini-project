@@ -1,5 +1,5 @@
 from sqlalchemy import desc
-from flask import Blueprint, render_template, url_for, redirect, flash, request, jsonify
+from flask import Blueprint, render_template, url_for, redirect, flash, request, jsonify, abort
 from flask_login import login_required, current_user, login_user
 from .models import Opportunity, User
 from .models import db
@@ -13,6 +13,8 @@ views = Blueprint('views', __name__)
 @views.route("/home")#if just "/" goes to def home
 @login_required
 def home():
+    if current_user.is_admin:
+        abort(404)
     filter_key = request.args.get('filter_key')
     if filter_key == "old":
         opportunities = Opportunity.query.order_by(Opportunity.date).all()
@@ -49,10 +51,6 @@ def register_oppr():
     if oppor:
         user = User.query.get(current_user.id)
         if user not in oppor.registered_users and len(oppor.registered_users) < oppor.user_limit:
-            # print(f"======={user.done_hours}=========")
-            # user.done_hours += int(oppor.hours)
-            # print(f"======={user.done_hours}=========")
-            # # db.session.delete(oppor)
             oppor.registered_users.append(user)
             print(oppor.registered_users)
             db.session.commit()

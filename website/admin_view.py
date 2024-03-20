@@ -9,7 +9,6 @@ admin_views = Blueprint('admin_view', __name__)
 @admin_views.route('/admin')
 @login_required
 def admin():
-    # user = 
     if current_user.is_admin:
         opportunities = Opportunity.query.all()
         return render_template('home.html', admin=current_user.is_admin, opportunities= opportunities)
