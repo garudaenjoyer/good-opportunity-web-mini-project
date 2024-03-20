@@ -1,56 +1,64 @@
-.menu{
-    background-color:#A63D3D;
+.menu {
+    background-color: #a63d3d;
     padding: 20px;
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
-.bar{
+.bar {
     color: #fff;
     text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 20px;
 }
-.logo{
+.logo {
     /* background-color: green; */
     font-size: 30px;
     color: #fff;
     text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
 }
-a:hover{
+a:hover {
     color: rgb(224, 224, 224);
 }
 
-
-.nav_button{
-    display:flex;
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#sign-up-form {
+    width: 40%;
+}
+.nav_button {
+    display: flex;
     justify-content: space-between;
-    width:auto;
+    width: auto;
     display: flex;
     align-items: center;
     white-space: nowrap;
 }
-.circle{
+.circle {
     width: 50px;
     height: 50px;
     background-color: rgb(213, 213, 213);
     border-radius: 50px;
 }
-.log-out{
+.log-out {
     color: white;
     text-decoration: none;
     font-size: 20px;
 }
 
-@media (max-width: 520px){
-    .circle{
+@media (max-width: 520px) {
+    .circle {
         display: none;
     }
-    .logo{
+    .logo {
         font-size: 25px;
     }
-    .log-out{
+    .log-out {
         font-size: 15px;
     }
 }
@@ -58,26 +66,25 @@ a:hover{
 .btn-primary {
     color: #f7f7f7;
     margin-top: 30px;
-    background-color: #A63D3D !important;
-    border: #A63D3D 2px solid !important;
+    background-color: #a63d3d !important;
+    border: #a63d3d 2px solid !important;
     transition: 400ms;
     display: flex;
     justify-content: center;
 }
 .btn-primary:hover {
-    color: #A63D3D !important;
+    color: #a63d3d !important;
     background-color: #473f3f00 !important;
     border-width: 2px !important;
-    border-color: #A63D3D !important;
+    border-color: #a63d3d !important;
     box-shadow: 0 0 0 0.25rem rgba(166, 61, 61, 0.5); /* Red shadow */
-
 }
 .btn-primary:active,
 .btn-primary:focus {
-    color: #A63D3D !important;
+    color: #a63d3d !important;
     background-color: #473f3f00 !important;
     border-width: 2px !important;
-    border-color: #A63D3D !important;
+    border-color: #a63d3d !important;
     outline: none; /* Remove the default blue outline on focus */
     box-shadow: 0 0 0 0.25rem rgba(166, 61, 61, 0.5) !important; /* Red shadow */
 }
@@ -86,8 +93,7 @@ a:hover{
     color: #f7f7f7; /* Change the color to red (#A63D3D) for visited links */
 }
 
-
-.row{
+.row {
     margin-top: 30px;
     display: flex;
     justify-content: space-around;
@@ -102,37 +108,35 @@ a:hover{
     width: 500px;
 }
 
-
-
-.card{
+.card {
     margin: 20px;
 }
 
-.hello{
+.hello {
     /* background-color: greenyellow; */
     display: flex;
     justify-content: space-between;
     height: 50px;
 }
-.delete{
+.delete {
     margin-top: 0px;
     padding: 7px;
     width: 40px;
     height: 40px;
     background-color: #fff !important;
-    color: #A63D3D;
+    color: #a63d3d;
 }
-.delete:hover{
-    background-color: #A63D3D !important;
+.delete:hover {
+    background-color: #a63d3d !important;
     color: #fff !important;
     font-weight: 400;
 }
-.close{
+.close {
     background-color: #fff;
-    color: #A63D3D;
+    color: #a63d3d;
 }
-.close:hover{
-    background-color: #A63D3D;
+.close:hover {
+    background-color: #a63d3d;
     color: #fff;
     font-weight: 400;
 }
@@ -141,8 +145,7 @@ a:hover{
     margin-top: 50px;
     display: inline-block;
     position: relative;
-    color: #A63D3D;
-    
+    color: #a63d3d;
 }
 
 .dropdown-menu {
@@ -174,7 +177,7 @@ a:hover{
 
 /* Style for the dropdown toggle link */
 .dropdown-toggle {
-    color: #A63D3D;
+    color: #a63d3d;
     text-decoration: none;
     cursor: pointer;
     font-size: medium;

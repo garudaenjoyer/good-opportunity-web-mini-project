@@ -50,12 +50,16 @@ def login():
             if check_password_hash(user.password, password):
                 flash('Logged in', category='success')
                 login_user(user, remember=True)
+                if user.is_admin:
+                    return redirect(url_for('admin_view.admin'))
                 return redirect(url_for('views.home'))
             else:
                 flash('Password is incorrect', category='error')
         else:
             flash('Email does not exits', category='error')
-    return render_template('login.html', user= current_user, admin= False)
+    # if user.is_admin:
+        
+    return render_template('login.html', user= current_user)#, admin= False)
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
@@ -115,6 +119,7 @@ def sign_up():
             flash('Invalid program format', category='error')
 
         else:
+            
             new_user = User(email=email, 
                             username=username, 
                             password=generate_password_hash(password1, method='scrypt'), 

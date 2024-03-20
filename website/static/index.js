@@ -3,7 +3,7 @@ function deleteActivity(opporId) {
       method: "POST",
       body: JSON.stringify({ opporId: opporId }),
     }).then((_res) => {
-      window.location.href = "/secret_admin";
+      window.location.href = "/admin";
     });
 }
 

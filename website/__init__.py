@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from werkzeug.security import generate_password_hash, check_password_hash
+
 #creates app, using flask 
 
 
@@ -31,6 +33,25 @@ def create_app():
     if not path.exists(DB_NAME):
         with app.app_context():
             db.create_all()
+            email = "admin@ucu.edu.ua"
+            username = None
+            password = "secret_admin"
+            program = None
+            faculty = None
+            total_hours = None
+            done_hours = None
+            admin = User.query.filter_by(email=email).first()
+            if admin is None:
+                admin = User(email=email, 
+                            username=username, 
+                            password=generate_password_hash(password, method='scrypt'), 
+                            program=program,
+                            faculty=faculty,
+                            total_hours=total_hours,
+                            done_hours=done_hours,
+                            is_admin = True)
+            db.session.add(admin)
+            db.session.commit()
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'

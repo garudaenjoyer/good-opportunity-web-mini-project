@@ -1,111 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
-        crossorigin="anonymous"
-        >
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-        
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/personal.css') }}">
-        
-        <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
-        
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/registration.css') }}">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles/style.css') }}"
+        />
+
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles/personal.css') }}"
+        />
+
+        <link
+            href="https://fonts.googleapis.com/css?family=JetBrains Mono"
+            rel="stylesheet"
+        />
+
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles/registration.css') }}"
+        />
 
         <title>{% block title %}Home{% endblock %}</title>
     </head>
 
     <body>
         <nav class="menu">
-          {% if not admin %}
-            <a class="logo" href="/home">
-              Можливості
-            </a>
-          {% else %}
-            <a class="logo" href="/secret_admin">
-              Можливості
-            </a>
-            {% endif %}
             {% if not admin %}
-              {% if user.is_authenticated %}
-              <div class = 'nav_button'>
-                <a class="nav-item nav-link bar logo" href="/personal_cab" class="acount">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                  </svg>
+            <a class="logo" href="/home"> Можливості </a>
+            {% else %}
+            <a class="logo" href="/admin"> Можливості </a>
+            {% endif %} {% if not admin %} {% if user.is_authenticated %}
+            <div class="nav_button">
+                <a
+                    class="nav-item nav-link bar logo"
+                    href="/personal_cab"
+                    class="acount"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        fill="currentColor"
+                        class="bi bi-person"
+                        viewBox="0 0 16 16"
+                    >
+                        <path
+                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"
+                        />
+                    </svg>
                 </a>
-                <a class="nav-item nav-link bar" id="logout" href="/logout">Logout</a>
-              </div>
-              {% else %}
-              <div class = 'nav_button'>
-                <a class="nav-item nav-link bar" id="login" href="/login">Login</a>
-                <a class="nav-item nav-link bar" id="sign-up" href="/sign-up">Sign-up</a>
-              </div>
-              {% endif %}
-            {%else%}
-            <div class = 'nav_button'>
-              <a class="nav-item nav-link bar" href="/logout">Logout</a>
-              <a class="nav-item nav-link bar" href="/secret_admin/add_opportunity">Add Opportunity</a>
+                <a class="nav-item nav-link bar" id="logout" href="/logout"
+                    >Logout</a
+                >
+            </div>
+            {% else %}
+            <div class="nav_button">
+                <a class="nav-item nav-link bar" id="login" href="/login"
+                    >Login</a
+                >
+                <a class="nav-item nav-link bar" id="sign-up" href="/sign-up"
+                    >Sign-up</a
+                >
+            </div>
+            {% endif %} {%else%}
+            <div class="nav_button">
+                <a class="nav-item nav-link bar" href="/logout">Logout</a>
+                <a class="nav-item nav-link bar" href="/admin/add_opportunity"
+                    >Add Opportunity</a
+                >
             </div>
             {% endif%}
         </nav>
 
-        {% with messages = get_flashed_messages(with_categories = true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-            {% if category == 'error'%}
-            <div class="alert alert-danger alter-dismissable fade show" role="alert"> 
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert"> 
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {% else %}
-            <div class="alert alert-success alter-dismissable fade show" role="alert"> 
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert"> 
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {% endif %}
-            {% endfor %}
-        {% endif %}
-        
-      
-        {% endwith %}
-        
-        <div class="container">
-            {% block content %} {% endblock %} 
+        {% with messages = get_flashed_messages(with_categories = true) %} {% if
+        messages %} {% for category, message in messages %} {% if category ==
+        'error'%}
+        <div
+            class="alert alert-danger alter-dismissable fade show"
+            role="alert"
+        >
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
+        {% else %}
+        <div
+            class="alert alert-success alter-dismissable fade show"
+            role="alert"
+        >
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+        <div class="container">{% block content %} {% endblock %}</div>
         <!-- <footer class="footer">
           <div class="container">
               Можливості
           </div>
       </footer> -->
         <script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
         ></script>
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"
-      ></script>
-      <script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"
-      ></script>
-      <script         
-          type="text/javascript"
-          src="{{ url_for('static', filename='index.js')}}"
-      ></script>
-  </body>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='index.js')}}"
+        ></script>
+    </body>
 </html>

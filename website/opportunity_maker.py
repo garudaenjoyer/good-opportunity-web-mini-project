@@ -8,9 +8,20 @@ import re
 opportunity_maker = Blueprint('opportunity_maker', __name__)
 
 
-@opportunity_maker.route('/secret_admin/add_opportunity', methods = ['GET', 'POST'])
+@opportunity_maker.route('/admin/add_opportunity', methods = ['GET', 'POST'])
 def add_opportunity():
-    if '/secret_admin' in request.referrer:
+    form_data = {
+        'date': '',
+        'activity': '',
+        'description': '',
+        'location': '',
+        'time': '',
+        'email': '',
+        'phone': '',
+        'hours': '',
+        'limit': ''
+    }
+    if '/admin' in request.referrer:
         if request.method == 'POST':
             date = request.form['date']
             activity = request.form['activity']
@@ -21,20 +32,45 @@ def add_opportunity():
             phone = request.form['phone']
             hours = request.form['hours']
             limit = int(request.form['limit'])
-            if date and activity and description and location and time\
-and email and phone and hours and limit:
-                if bool(re.match('^[a-zA-Z0-9._%+-]+@ucu\.edu\.ua$', email)) is False:
-                    flash('Email shoud use "ucu.edu.ua" domain', category='error')
-                if bool(re.match('^\+\d{1,3}\s?\(\d{1,3}\)\s?\d{3}-\d{2}-\d{2}$|^\+\d{9,12}$', phone)) is False:
-                    flash('Incorrect phone number format', category='error')
-                if int(hours) > 60:
-                    flash('Hours should not exceed the value of 60', category='error')
-                if int(hours) <= 0:
-                    flash('Hours should be greater than zero', category='error')
-                if len(description) > 1500:
-                    flash('Too many symbols in description', category='error')
-                if len(activity) > 150:
-                    flash('Name of activity can not contain more than 150 symbols', category= 'error')
+#             if date and activity and description and location and time\
+# and email and phone and hours and limit:
+            form_data = {
+                'date': date,
+                'activity': activity,
+                'description': description,
+                'location': location,
+                'time': time,
+                'email': email,
+                'phone': phone,
+                'hours': hours,
+                'limit': limit
+            }
+
+                        
+            if bool(re.match('^[a-zA-Z0-9._%+-]+@ucu\.edu\.ua$', email)) is False:
+                flash('Email should use "ucu.edu.ua" domain', category='error')
+                form_data['email'] = ''
+
+            elif bool(re.match("^\+\d{1,2}( \()?\d{1,3}(\) )?\d{3}-?\d{2}-?\d{2}$", phone)) is False:
+                flash('Incorrect phone number format', category='error')
+                form_data['phone'] = ''
+
+            elif int(hours) > 60:
+                flash('Hours should not exceed the value of 60', category='error')
+                form_data['hours'] = ''
+            elif int(hours) <= 0:
+                flash('Hours should be greater than zero', category='error')
+                form_data['hours'] = ''
+
+            elif len(description) > 1500:
+                flash('Too many symbols in description', category='error')
+                form_data['description'] = ''
+
+            elif len(activity) > 150:
+                flash('Name of activity cannot contain more than 150 symbols', category='error')
+                form_data['activity'] = ''
+
+            else:
                 opportunity = Opportunity(date=date, activity=activity, description=description,
                                         location=location, time=time, email=email, phone=phone, hours=hours,
                                         user_limit = limit)
@@ -43,7 +79,7 @@ and email and phone and hours and limit:
                 flash('Opportunity created successfully', 'success')
                 return redirect(url_for('admin_view.admin'))
             flash('Please fill all forms', 'error')
-            return redirect(url_for('admin_view.admin'))
+            return redirect(url_for('opportunity_maker.add_opportunity'))
         return render_template('add_opportunity.html', add_opportunity=True, user=current_user, admin = True)
     else:
         abort(404)
@@ -123,7 +159,7 @@ def generate_dummy_opportunities():
             user_limit=data['limit']
         )
         db.session.add(opportunity)
-    
+
     db.session.commit()
     flash('Dummy opportunities created successfully', 'success')
     return redirect(url_for('views.home'))

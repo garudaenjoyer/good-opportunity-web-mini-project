@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     faculty = db.Column(db.String(150))
     total_hours = db.Column(db.Integer)
     done_hours = db.Column(db.Integer)
+    is_admin = db.Column(db.Boolean(), default=False)
 
 
 
