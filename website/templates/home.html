@@ -63,21 +63,21 @@
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
         <li>
             <a
-                href="{{ url_for('views.home', filter_key='new')}}"
+                href="{% if admin %}{{ url_for('admin_view.admin', filter_key='new')}}{% else %}{{ url_for('views.home', filter_key='new')}}{% endif %}"
                 class="dropdown-item"
                 >Датою(найновіші)</a
             >
         </li>
         <li>
             <a
-                href="{{ url_for('views.home', filter_key='old')}}"
+                href="{% if admin %}{{ url_for('admin_view.admin', filter_key='old')}}{% else %}{{ url_for('views.home', filter_key='old')}}{% endif %}"
                 class="dropdown-item"
                 >Датою(найстаріші)</a
             >
         </li>
         <li>
             <a
-                href="{{ url_for('views.home', filter_key='amount')}}"
+                href="{% if admin %}{{ url_for('admin_view.admin', filter_key='amount')}}{% else %}{{ url_for('views.home', filter_key='amount')}}{% endif %}"
                 class="dropdown-item"
                 >Кількістю годин</a
             >
@@ -85,7 +85,7 @@
     </ul>
 </div>
 <div class="grid-container" id="notes-container">
-        <!-- {% if current_user.is_authenticated %}
+    <!-- {% if current_user.is_authenticated %}
             <a href="{{ url_for('opportunity_maker.generate_dummy_opportunities') }}">Generate Dummy Opportunities</a>
         {% endif %} -->
     {% for opportunity in opportunities %}
