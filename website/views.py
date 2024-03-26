@@ -13,8 +13,8 @@ views = Blueprint('views', __name__)
 @views.route("/home")#if just "/" goes to def home
 @login_required
 def home():
-    if current_user.is_admin:
-        abort(404)
+    # if current_user.is_admin:
+    #     abort(404)
     filter_key = request.args.get('filter_key')
     if filter_key == "old":
         opportunities = Opportunity.query.order_by(Opportunity.date).all()

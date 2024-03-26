@@ -27,7 +27,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix= '/') #registers blueprint from auth.py
     app.register_blueprint(admin_views, url_prefix= '/')
     app.register_blueprint(opportunity_maker, url_prefix= '/')
-#-----------------------------------
+
     from .models import User
 
     if not path.exists(DB_NAME):

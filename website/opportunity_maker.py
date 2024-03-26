@@ -49,9 +49,9 @@ def add_opportunity():
                 flash('Email should use "ucu.edu.ua" domain', category='error')
                 form_data['email'] = ''
 
-            elif bool(re.match("^\+\d{1,2}( \()?\d{1,3}(\) )?\d{3}-?\d{2}-?\d{2}$", phone)) is False:
-                flash('Incorrect phone number format', category='error')
-                form_data['phone'] = ''
+            # elif bool(re.match("^\+\d{1,2}( \()?\d{1,3}(\) )?\d{3}-?\d{2}-?\d{2}$", phone)) is False:
+            #     flash('Incorrect phone number format', category='error')
+            #     form_data['phone'] = ''
 
             elif int(hours) > 60:
                 flash('Hours should not exceed the value of 60', category='error')
@@ -90,7 +90,7 @@ def generate_dummy_opportunities():
     dummy_opportunities = [
         {
             'date': '2024-03-16',
-            'activity': 'Community Cleanup Day',
+            'activity': 'на незаконні дії працівників поліції на незаконні дії працівників поліції на незаконні дії працівників поліції',
             'description': 'Join us for a community cleanup event to beautify our neighborhood and promote '
                            'environmental stewardship. Volunteers will receive a free lunch and a certificate of '
                            'appreciation.',
