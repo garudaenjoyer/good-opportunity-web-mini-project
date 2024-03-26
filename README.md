@@ -1,2 +1,34 @@
-# good-opportunity-web-mini-project
-# After visiting the website, you get to the login page , if you are registered, you enter your e-mail address and password to get to the main page, if not, you can go to the registration page via the sing-up button, where you can enter data about your hours, e-mail, password, name and surname, and the program, all this data is recorded in the database. After registering, you go to the main page.On the main page, you will see the activities that you can sign up for and the ability to sort the opportunities by date and number of hours. You can also log out of your account and go to your personal account, where you will see information about the hours worked and activities for which you have signed up, you can also return to the main page and log out of your account.Also by entering secret_admin in the link, you will go to administrator mode, where you can create activities.After creating the activity, the data will also be recorded in the database.Database is written in SQLite and utilized by a Python backend written in SQLAlchemy. The backend is built using Flask, while the frontend is composed of HTML and CSS.
+#Scholarship Hours Tracking Project
+Description
+This project is a web application designed to help students track their scholarship hours. It allows students to register for events, log their hours, and provides administrators with tools to manage events and track student participation.
+
+Features
+User registration and authentication
+Event registration for students
+Event management for administrators
+Logging of scholarship hours
+User profile management
+Responsive design for mobile and desktop
+Technologies Used
+Frontend: HTML, CSS, JavaScript, Bootstrap
+Backend: Python, Flask
+Database: MySQL
+Other Tools: Flask-SQLAlchemy, Flask-Login, Jinja2 templates
+Setup
+Clone the repository:
+bash
+Copy code
+git clone https://github.com/yourusername/scholarship-hours-project.git
+Install dependencies:
+Copy code
+pip install -r requirements.txt
+Create a MySQL database and update the database configuration in config.py.
+Initialize the database:
+csharp
+Copy code
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade
+Run the application:
+Copy code
+python app.py
