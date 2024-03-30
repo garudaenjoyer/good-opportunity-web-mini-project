@@ -20,3 +20,8 @@ This project is a web application designed to help students track their scholars
 
 ## Setup
 1. **Clone the repository:**
+2. **Install Python and MySQL.**
+3. **Create a MySQL database named "scholarship_hours".**
+4. **Modify configuration file with database credentials.**
+5. **Install project dependencies (pip install -r requirements.txt).**
+6. **Run the Flask server (flask run).**
