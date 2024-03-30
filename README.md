@@ -25,3 +25,9 @@ This project is a web application designed to help students track their scholars
 4. **Modify configuration file with database credentials.**
 5. **Install project dependencies (pip install -r requirements.txt).**
 6. **Run the Flask server (flask run).**
+## Usage
+
+1. Register as a user or log in if you already have an account.
+2. Navigate to the events page to register for upcoming events.
+3. Log your scholarship hours after attending events.
+4. Administrators can manage events and track student participation through the admin dashboard.
