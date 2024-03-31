@@ -46,7 +46,7 @@ def add_opportunity():
             }
 
             if bool(re.match('^[a-zA-Z0-9._%+-]+@ucu\.edu\.ua$', email)) is False:
-                flash('Email should use "ucu.edu.ua" domain', category='error')
+                flash('Використовуйте свою пошту УКУ, з доменом "ucu.edu.ua"', category='error')
                 form_data['email'] = ''
 
             # elif bool(re.match("^\+\d{1,2}( \()?\d{1,3}(\) )?\d{3}-?\d{2}-?\d{2}$", phone)) is False:
@@ -54,18 +54,18 @@ def add_opportunity():
             #     form_data['phone'] = ''
 
             elif int(hours) > 60:
-                flash('Hours should not exceed the value of 60', category='error')
+                flash('Кількість годин не може перевищувати 60', category='error')
                 form_data['hours'] = ''
             elif int(hours) <= 0:
-                flash('Hours should be greater than zero', category='error')
+                flash('Кількість годин має бути більше 0', category='error')
                 form_data['hours'] = ''
 
             elif len(description) > 1500:
-                flash('Too many symbols in description', category='error')
+                flash('Забагато символів в описі. Максимум - 1500.', category='error')
                 form_data['description'] = ''
 
             elif len(activity) > 150:
-                flash('Name of activity cannot contain more than 150 symbols', category='error')
+                flash('Назва можливості не може перевищувати 150 символів', category='error')
                 form_data['activity'] = ''
 
             else:
@@ -74,7 +74,7 @@ def add_opportunity():
                                           user_limit=limit)
                 db.session.add(opportunity)
                 db.session.commit()
-                flash('Opportunity created successfully', 'success')
+                flash('Можливість успішно додана', 'success')
                 return redirect(url_for('admin_view.admin'))
             # Return the rendered template with form_data to preserve entered values
             return render_template('add_opportunity.html', add_opportunity=True, user=current_user, admin=True,
@@ -88,19 +88,19 @@ def add_opportunity():
 @login_required
 def generate_dummy_opportunities():
     dummy_opportunities = [
-        {
-            'date': '2024-03-16',
-            'activity': 'на незаконні дії працівників поліції на незаконні дії працівників поліції на незаконні дії працівників поліції',
-            'description': 'Join us for a community cleanup event to beautify our neighborhood and promote '
-                           'environmental stewardship. Volunteers will receive a free lunch and a certificate of '
-                           'appreciation.',
-            'location': 'Central Park',
-            'time': '9:00 AM - 12:00 PM',
-            'email': 'volunteer@communitycleanup.org',
-            'phone': '555-123-4567',
-            'hours': '4',
-            'limit': '3'
-        },
+        # {
+        #     'date': '2024-03-16',
+        #     'activity': 'на незаконні дії працівників поліції на незаконні дії працівників поліції на незаконні дії працівників поліції',
+        #     'description': 'Join us for a community cleanup event to beautify our neighborhood and promote '
+        #                    'environmental stewardship. Volunteers will receive a free lunch and a certificate of '
+        #                    'appreciation.',
+        #     'location': 'Central Park',
+        #     'time': '9:00 AM - 12:00 PM',
+        #     'email': 'volunteer@communitycleanup.org',
+        #     'phone': '555-123-4567',
+        #     'hours': '4',
+        #     'limit': '3'
+        # },
         {
             'date': '2024-03-20',
             'activity': 'Children\'s Book Reading',

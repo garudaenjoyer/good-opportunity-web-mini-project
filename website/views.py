@@ -20,7 +20,7 @@ def home():
         opportunities = Opportunity.query.order_by(Opportunity.date).all()
     elif filter_key == "new":
         opportunities = Opportunity.query.order_by(desc(Opportunity.date)).all()
-    elif filter_key == "amount":
+    elif filter_key      == "amount":
         opportunities = Opportunity.query.order_by(desc(Opportunity.hours)).all()
     else:
         opportunities = Opportunity.query.all()
@@ -35,7 +35,7 @@ def delete_oppor():
     if oppor:
         db.session.delete(oppor)
         db.session.commit()
-        flash('Opportunity was deleted', 'success')
+        flash('Можливість успішно видалена', 'success')
     return jsonify({})
 
 @views.route('/personal_cab')
@@ -54,18 +54,18 @@ def register_oppr():
             oppor.registered_users.append(user)
             print(oppor.registered_users)
             db.session.commit()
-            flash('You were registered', 'success')
+            flash('Ви успішно зареєструвались на можливість', 'success')
             return jsonify({'message': 'Opportunity added successfully'}), 200
         elif user in oppor.registered_users:
-            flash('You have already registered', 'error')
+            flash('Ви вже зареєстровані на цю можливість', 'error')
             print(oppor.registered_users)
-            return jsonify({'error': 'You have already registered'}), 404
+            return jsonify({'error': 'Ви вже зареєстровані на цю можливість'}), 404
         else:
-            flash('There was richen the limit of participants', 'error')
+            flash('Вже набрана потрібна кількість людей', 'error')
             print(oppor.registered_users)
-            return jsonify({'error': 'There was richen the limit of participants'}), 404
+            return jsonify({'error': 'Вже набрана потрібна кількість людей'}), 404
     else:
-        return jsonify({'error': 'Opportunity not found'}), 404
+        return jsonify({'error': 'Немає такої можливості'}), 404
 
 
 @views.route('/registered_users/<int:opportunity_id>')

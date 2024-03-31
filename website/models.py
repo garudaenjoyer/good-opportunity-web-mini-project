@@ -20,8 +20,6 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean(), default=False)
 
 
-
-
 class Opportunity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(30))
